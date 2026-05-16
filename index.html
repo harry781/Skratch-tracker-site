@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Skratch Tracker — Privacy Policy</title>
-  <meta name="description" content="Privacy Policy for Skratch Tracker." />
-
-  <link rel="icon" type="image/png" href="/logo.png" />
-  <link rel="apple-touch-icon" href="/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skratch Tracker — Private Scabies Symptom Tracking</title>
+  <meta name="description" content="Track symptoms, log treatments, and manage recovery privately on your device. No accounts required. No health data uploaded.">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,29 +19,31 @@
       --card-bg: rgba(255,255,255,0.025);
       --card-border: rgba(255,255,255,0.06);
       --accent: rgba(115,89,191,1);
+      --accent-dim: rgba(115,89,191,0.35);
       --accent-glow: rgba(115,89,191,0.15);
       --text-primary: rgba(255,255,255,0.92);
       --text-body: rgba(255,255,255,0.58);
       --text-muted: rgba(255,255,255,0.38);
       --text-faint: rgba(255,255,255,0.22);
       --radius: 16px;
+      --radius-sm: 12px;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text-body);
-      line-height: 1.7;
-      min-height: 100vh;
+      line-height: 1.6;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
     #network-canvas {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       z-index: 0;
       opacity: 0.5;
       pointer-events: none;
@@ -51,10 +51,8 @@
 
     .aurora-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: 0;
       pointer-events: none;
       background:
@@ -65,9 +63,7 @@
 
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       padding: 16px 24px;
       display: flex;
@@ -84,12 +80,10 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      flex-shrink: 0;
     }
 
     .nav-logo {
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       border-radius: 8px;
       object-fit: cover;
     }
@@ -103,106 +97,250 @@
     }
 
     .nav-links {
-      display: flex !important;
+      display: flex;
       gap: 28px;
       list-style: none;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      align-items: center;
-      max-width: 70vw;
-    }
-
-    .nav-links li {
-      display: list-item !important;
     }
 
     .nav-links a {
-      display: inline-block !important;
       color: var(--text-muted);
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
       transition: color 0.2s;
-      white-space: nowrap;
     }
 
-    .nav-links a:hover {
-      color: var(--text-primary);
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
     }
 
     main {
       position: relative;
       z-index: 1;
-      padding: 140px 24px 90px;
+      padding-top: 80px;
     }
 
-    .legal-content {
-      max-width: 760px;
+    .container {
+      max-width: 800px;
       margin: 0 auto;
-      background: var(--card-bg);
-      border: 0.5px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 34px;
+      padding: 0 24px;
     }
 
-    h1 {
-      font-size: 28px;
-      line-height: 1.2;
+    .page { display: none; padding: 60px 0 100px; }
+    .page.active { display: block; }
+
+    .hero {
+      text-align: center;
+      padding: 80px 0 60px;
+    }
+
+    .hero-logo {
+      width: 120px; height: 120px;
+      border-radius: 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 40px rgba(115,89,191,0.25), 0 0 80px rgba(115,89,191,0.1);
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
       font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text-primary);
-      margin: 34px 0 12px;
-    }
-
-    p {
-      font-size: 14px;
-      color: var(--text-body);
-      margin-bottom: 14px;
-    }
-
-    .last-updated {
-      font-size: 12px;
+      letter-spacing: 2.5px;
       color: var(--text-muted);
-      margin-bottom: 24px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
     }
 
-    .summary {
-      padding: 18px;
-      background: var(--accent-glow);
-      border: 0.5px solid rgba(115,89,191,0.25);
-      border-radius: 12px;
-      margin: 22px 0;
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 20px;
     }
 
-    .summary p {
-      margin-bottom: 0;
-    }
-
-    .legal-content ul {
-      margin: 0 0 18px 20px;
-      padding: 0;
-    }
-
-    .legal-content li {
-      font-size: 14px;
+    .hero p {
+      font-size: 17px;
       color: var(--text-body);
-      margin-bottom: 10px;
+      max-width: 520px;
+      margin: 0 auto 36px;
       line-height: 1.7;
     }
 
-    a {
-      color: var(--accent);
+    .hero-cta, .app-store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(115,89,191,0.4);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 15px;
+      font-weight: 700;
       text-decoration: none;
+      transition: all 0.2s;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .hero-cta:hover, .app-store-badge:hover {
+      background: rgba(115,89,191,0.45);
+      transform: translateY(-1px);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .feature-card, .card {
+      background: var(--card-bg);
+      border: 0.5px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3, .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .feature-card p, .card p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    .feature-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--accent-glow);
+      border: 0.5px solid rgba(115,89,191,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .card-icon {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+      border: 0.5px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+    }
+
+    .section-heading { margin-bottom: 32px; }
+
+    .section-heading h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      font-size: 15px;
+      color: var(--text-body);
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 0.5px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 18px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-question::after { transform: rotate(45deg); }
+
+    .faq-answer {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      padding: 0 24px 18px;
+      max-height: 300px;
+    }
+
+    .faq-answer p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 0.5px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 36px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .contact-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .download-section {
+      text-align: center;
+      padding: 60px 0;
+      margin-top: 40px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .download-section h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .download-section p {
+      font-size: 14px;
+      color: var(--text-body);
+      margin-bottom: 28px;
     }
 
     footer {
@@ -226,11 +364,10 @@
       text-decoration: none;
       font-size: 12px;
       font-weight: 500;
+      transition: color 0.2s;
     }
 
-    .footer-links a:hover {
-      color: var(--text-body);
-    }
+    .footer-links a:hover { color: var(--text-body); }
 
     .footer-copy {
       font-size: 11px;
@@ -238,32 +375,25 @@
     }
 
     @media (max-width: 640px) {
-      nav {
-        align-items: flex-start;
-        padding: 14px 16px;
-        gap: 12px;
+      .nav-links { display: none; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(3,3,7,0.95);
+        backdrop-filter: blur(20px);
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--card-border);
       }
 
-      .nav-links {
-        gap: 8px 12px;
-        max-width: 210px;
-      }
-
-      .nav-links a {
-        font-size: 11px;
-      }
-
-      main {
-        padding: 140px 16px 70px;
-      }
-
-      .legal-content {
-        padding: 24px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
+      .nav-toggle { display: block; }
+      .hero { padding: 50px 0 40px; }
+      .hero-logo { width: 90px; height: 90px; border-radius: 22px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .contact-card { padding: 24px; }
     }
   </style>
 </head>
@@ -274,123 +404,118 @@
 
   <nav>
     <a href="/" class="nav-brand">
-      <img src="/logo.png" alt="Skratch Tracker" class="nav-logo" />
+      <img src="/logo.png" alt="Skratch Tracker" class="nav-logo">
       <span class="nav-title">Skratch Tracker</span>
     </a>
 
-    <ul class="nav-links">
-      <li><a href="/#features">Features</a></li>
-      <li><a href="/#faq">FAQ</a></li>
-      <li><a href="/#contact">Contact</a></li>
-      <li><a href="/privacy-policy/" aria-current="page" style="color: var(--text-primary); font-weight: 800;">Privacy</a></li>
+    <button class="nav-toggle" onclick="toggleNav()">&#9776;</button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#features" onclick="showPage('features')">Features</a></li>
+      <li><a href="#faq" onclick="showPage('faq')">FAQ</a></li>
+      <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
+      <li><a href="/privacy-policy/">Privacy</a></li>
       <li><a href="/terms-of-service/">Terms</a></li>
     </ul>
   </nav>
 
   <main>
-    <div class="legal-content">
-      <h1>Skratch Tracker — Privacy Policy</h1>
-      <p class="last-updated">Effective date: 16 May 2026</p>
+    <div class="page active" id="page-home">
+      <div class="container">
+        <div class="hero">
+          <img src="/logo.png" alt="Skratch Tracker" class="hero-logo">
+          <p class="hero-eyebrow">Private symptom tracking for iOS</p>
+          <h1>Track scabies symptoms privately on your device</h1>
+          <p>Log symptoms, photograph progress, manage treatments and share anonymised signals with close contacts. Your health data never leaves your phone unless you choose to export it.</p>
+          <a href="#" class="hero-cta">Download on the App Store</a>
+        </div>
 
-      <p>This Privacy Policy explains how Skratch Tracker (the “App”) collects, uses, stores and shares personal data. The App is operated by Harry Roderick Johannes Spiller (“we”, “us”, “our”). Contact: <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a>.</p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">&#x1F512;</div>
+            <h3>Private by design</h3>
+            <p>All data stays on your device. No account required. No health information uploaded. You control what leaves the app.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#x1F4CB;</div>
+            <h3>Symptom tracking</h3>
+            <p>Log symptoms by body area, severity, and type. Track changes over time with dated check-ins and photo records.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#x1F48A;</div>
+            <h3>Treatment management</h3>
+            <p>Record treatments with application dates, second-dose reminders, and outcome tracking to share with your clinician.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#x1F514;</div>
+            <h3>Anonymous signal sharing</h3>
+            <p>Optionally alert linked contacts if your concern level changes. No health details shared &mdash; just a private nudge.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#x1F916;</div>
+            <h3>Built-in intelligence</h3>
+            <p>Ask questions about symptoms, treatments and next steps. Answers sourced from public health guidance, not guesswork.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#x1F4C4;</div>
+            <h3>GP summary export</h3>
+            <p>Generate a medical summary PDF to bring to your appointment. Clinically relevant information, clearly formatted.</p>
+          </div>
+        </div>
 
-      <p>This policy is written for the current pre-release/TestFlight version of the App. If the App is later transferred to a company, or if advertising such as Google AdMob is introduced, this policy must be updated before that change goes live.</p>
-
-      <div class="summary">
-        <p><strong>Important summary:</strong> The App is a personal tracking and information tool. It is not a medical device and does not provide diagnosis, treatment, clinical advice or clearance. Some data you enter may be health-related. We aim to minimise what leaves your device and to separate optional analytics and AI-improvement processing from core app functionality.</p>
+        <div class="download-section">
+          <h2>Ready to take control?</h2>
+          <p>Free to download. No sign-up required. Your data stays yours.</p>
+          <a href="#" class="app-store-badge">Download for iOS</a>
+        </div>
       </div>
+    </div>
 
-      <h2>1. Who is responsible for your data?</h2>
-      <p>The data controller for data processed by the App is Harry Roderick Johannes Spiller, currently based in the United Kingdom. Email: <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a>.</p>
-      <p>Where third-party services process data under their own terms or for their own legally permitted purposes, including Apple and Google/Firebase, their own privacy notices may also apply.</p>
+    <div class="page" id="page-features">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Features</h2>
+          <p>Everything you need to track, manage, and understand scabies symptoms &mdash; privately.</p>
+        </div>
 
-      <h2>2. App features and data map</h2>
-      <p>The App currently uses Firebase Authentication, Cloud Firestore, Firebase AI Logic, Firebase App Check, Firebase Analytics, Firebase Crashlytics and Firebase Cloud Messaging/Messaging. The Firestore database location is europe-west2 (London).</p>
-      <p>Most symptom tracking data is intended to remain local to your device. Local data may include symptom logs, skin photographs, treatment records, self-check and recovery quiz answers, region preference and PDF exports created by you. Photos are stored on-device and are not sent to Firebase AI or Firestore by the App in the current version.</p>
-      <p>If you create an account or enable online signal-sharing features, limited account and signal-sharing data is stored in Firebase. This may include your Firebase user ID, Sign in with Apple account identifiers made available to the App, signal-sharing profile records, linked-contact relationship records, invite/link records, generic concern-level status or signal state, treatment-status category needed for signal logic, timestamps and technical metadata.</p>
-      <p>Signal sharing is designed to share a generic status/signal with linked users. It is not designed to share symptom details, photographs, names of contacts, free-text notes, email addresses, Apple identifiers, invite codes or full raw logs.</p>
+        <div class="card"><div class="card-header"><div class="card-icon">&#x1F4F8;</div><span class="card-title">Photo documentation</span></div><p>Take dated photos of affected areas to track visual changes over time. Photos are stored only on your device and never uploaded anywhere.</p></div>
+        <div class="card"><div class="card-header"><div class="card-icon">&#x1F4CA;</div><span class="card-title">Self-check quizzes</span></div><p>Guided self-assessments help you understand your current symptom pattern. Based on publicly available medical guidance &mdash; not a diagnosis.</p></div>
+        <div class="card"><div class="card-header"><div class="card-icon">&#x1F465;</div><span class="card-title">Contact management</span></div><p>Track close contacts who may need to be aware. Optional anonymous signal sharing alerts contacts without revealing any health details.</p></div>
+        <div class="card"><div class="card-header"><div class="card-icon">&#x1F9E0;</div><span class="card-title">Skratch Intelligence</span></div><p>Ask questions in natural language. Get answers based on authoritative health sources. Context-aware suggestions appear when relevant to your situation.</p></div>
+        <div class="card"><div class="card-header"><div class="card-icon">&#x1F30D;</div><span class="card-title">Region-aware guidance</span></div><p>Set your region to get relevant medical resources, emergency numbers, and health guidance links. Supports UK, USA, and worldwide.</p></div>
+        <div class="card"><div class="card-header"><div class="card-icon">&#x2705;</div><span class="card-title">Recovery tracking</span></div><p>Recovery self-checks help you understand when symptoms are resolving. Track your journey from first concern through treatment to clearance.</p></div>
+      </div>
+    </div>
 
-      <h2>3. Health-related and sensitive data</h2>
-      <p>Information about symptoms, skin photographs, treatment use, contacts, AI questions and app context may reveal health-related information. We treat this as sensitive and seek to minimise what is processed outside your device.</p>
-      <p>Signal sharing does not share symptom details. It uses a generic alert/status to linked users if your concern level reaches the highest threshold and signal sharing is enabled.</p>
-      <p>The AI feature may receive health-related context only if you choose to use AI and, for app-context mode, opt in to sending a minimised app-context summary. Do not use the AI feature for emergencies or for confidential information you do not want processed by an external AI service.</p>
+    <div class="page" id="page-faq">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Frequently asked questions</h2>
+          <p>Common questions about Skratch Tracker.</p>
+        </div>
 
-      <h2>4. Legal bases for processing</h2>
-      <p>For UK GDPR and EU GDPR purposes, we rely on the following legal bases where applicable:</p>
-      <ul>
-        <li><strong>Contract or steps necessary to provide the requested service:</strong> to operate core app functionality, account features, signal sharing, Firestore-backed linking, AI responses requested by you, and account deletion.</li>
-        <li><strong>Explicit consent / consent:</strong> for optional analytics collection; for context-aware AI where health-related app context is sent to Firebase AI / Google; and for optional AI-improvement review where AI questions, AI responses and selected app context are stored or reviewed to improve the feature.</li>
-        <li><strong>Legitimate interests:</strong> for security, fraud prevention, abuse prevention, app reliability, Crashlytics diagnostics, App Check and necessary service logs, provided this does not override your rights and freedoms.</li>
-        <li><strong>Legitimate interests:</strong> for limited Firebase AI operational monitoring used to measure request volume, latency, errors, token usage and model performance for service reliability, provided this does not intentionally store AI prompt or response content and does not override your rights and freedoms.</li>
-        <li><strong>Legal obligation:</strong> where we must retain or disclose limited information to comply with law, regulator requests or legal process.</li>
-      </ul>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Is Skratch Tracker a medical device?</div><div class="faq-answer"><p>No. Skratch Tracker is a self-tracking and signposting tool. It does not diagnose, treat, cure, or prevent disease. Always consult a healthcare professional for medical advice.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Where is my data stored?</div><div class="faq-answer"><p>All health data is stored only on your device. If you create an account for Signal Sharing, only limited anonymous signal status is stored online.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Do I need to create an account?</div><div class="faq-answer"><p>No. The app works fully without any account. Sign in with Apple is only needed for anonymous Signal Sharing.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What does the AI feature do?</div><div class="faq-answer"><p>Skratch Intelligence lets you ask questions about symptoms, treatments, and next steps. It does not provide a diagnosis and is not a substitute for medical advice.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Is analytics data collected?</div><div class="faq-answer"><p>Only if you explicitly opt in. Analytics is off by default and never includes symptom details, photos, contacts, AI conversations, or health information.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Can I export my data for a doctor?</div><div class="faq-answer"><p>Yes. The GP Summary feature generates a PDF with your symptom timeline, treatments, and self-check results.</p></div></div>
+      </div>
+    </div>
 
-      <h2>5. Analytics consent</h2>
-      <p>Firebase Analytics is optional. The App is intended not to enable Firebase Analytics until you have been shown a clear choice and you select “Allow analytics” or equivalent. If you decline, the App should remain usable and Firebase Analytics should stay disabled.</p>
-      <p>Analytics is used only to monitor aggregate app and feature use. We do not use Analytics for advertising, profiling, eligibility decisions, medical decisions or automated decision-making. We do not knowingly send symptom details, photographs, AI question text, treatment entries, body areas, contact names, invite codes, Apple identifiers, email addresses, free-text notes, or quiz answers to Analytics.</p>
-      <p>Analytics events should be broad feature-use events only, such as opening a screen, using export, opening AI, using signal sharing or completing a non-content-specific flow. You can withdraw Analytics consent in the App’s settings where implemented.</p>
+    <div class="page" id="page-contact">
+      <div class="container">
+        <div class="section-heading" style="text-align:center;">
+          <h2>Contact us</h2>
+          <p>Questions, feedback, or support requests.</p>
+        </div>
 
-      <h2>6. Crashlytics and diagnostics</h2>
-      <p>Firebase Crashlytics helps us detect and fix crashes. Crash reports may include technical details such as device model, iOS version, app version, timestamps, stack traces and diagnostic state. We do not intentionally log symptom details, AI question text, photographs, treatment notes, contact names, email addresses, Apple identifiers, invite codes or other health content into Crashlytics.</p>
-
-      <h2>7. Authentication and account deletion</h2>
-      <p>If you use signal sharing or online features, you may sign in using Sign in with Apple and Firebase Authentication. We use this to create a Firebase user ID and to associate Firestore signal-sharing records with your account.</p>
-      <p>Where the App provides an account deletion function, we will use reasonable efforts to delete your Firebase Authentication account and Firestore records controlled by the App and associated with your signal-sharing profile, links, invites, signals and any AI-improvement records stored by the App for that account. Local data may need to be cleared separately using the local clear-data function where available, or by uninstalling the App.</p>
-      <p>Deletion does not necessarily remove data already exported, shared with another person, stored locally unless separately cleared, retained in backups or logs for a limited period, retained by third-party providers under their own terms, or retained where required for legal, security or abuse-prevention reasons. We do not promise deletion of data outside our control.</p>
-
-      <h2>8. AI feature, app-context mode and AI-improvement review</h2>
-      <p>The Intelligence feature uses Firebase AI Logic / Google to generate responses. AI output is generated automatically and may be inaccurate, incomplete or unsuitable for your circumstances. It is not medical advice, diagnosis or treatment.</p>
-      <p>The App is intended to offer at least two AI modes. “Ask without app context” sends only the typed AI question and necessary technical request data. “Use app context” sends the typed AI question plus a minimised app-context summary, but only after you opt in to this context-aware processing.</p>
-      <p>The minimised app-context summary may include treatment status, recent symptom pattern, recent symptoms as broad categories, concern level, contact-risk estimate, contact-risk sharing status, region and other non-identifying app-state categories relevant to the response. The App is not intended to send photographs, names, email addresses, Apple identifiers, contact names, invite codes, free-text notes or full raw logs to Firebase AI in the current version.</p>
-      <p>AI-improvement review is separate from using the AI feature. If you explicitly opt in to AI-improvement review, the App may store and review your AI questions, AI responses and selected minimised app context to improve AI quality, safety, reliability and feature performance. This may include health-related information. You can use the AI feature without allowing AI-improvement review.</p>
-      <p>If you do not opt in to AI-improvement review, the App is not intended to store your AI conversation for product-improvement review. Firebase AI / Google may still process your request to generate a response and may process operational, safety, security, logging or legal-compliance data under applicable Firebase/Google terms and settings.</p>
-      <p>Firebase AI monitoring or prompt/response tracing is intended to be configured so that prompt/response content is not sampled or reviewed for users who have not opted in to AI-improvement review. If monitoring is used for opted-in users, it should be disclosed and limited to the minimum needed for improvement and safety review.</p>
-      <p>We may use Firebase AI operational monitoring to measure request volume, latency, errors, token usage and model performance for service reliability. This monitoring is handled as legitimate-interests processing for app reliability and service operation, and is intended not to store AI prompt or response content; prompt and response logging should be disabled or excluded from Cloud Logging unless you have opted in to AI-improvement review.</p>
-      <p>The App may offer a “Clear chat” control to remove the visible or locally held chat from the App. Clearing chat removes content controlled by the App; it does not necessarily delete information already processed by Firebase AI / Google for earlier response generation, safety, security, logging, service delivery or legal purposes.</p>
-
-      <h2>9. Notifications</h2>
-      <p>The App may use local notifications and/or Firebase Cloud Messaging. You can control notification permission through iOS Settings. Notification data should not contain detailed health information unless clearly explained and necessary for the notification you request.</p>
-
-      <h2>10. Sharing with third parties</h2>
-      <ul>
-        <li><strong>Apple:</strong> Sign in with Apple, App Store/TestFlight, StoreKit and device-level permissions.</li>
-        <li><strong>Google/Firebase:</strong> Authentication, Firestore, AI Logic, App Check, Analytics, Crashlytics and Messaging as described above.</li>
-        <li><strong>External health-resource websites:</strong> if you tap a link to NHS, CDC, WHO, DermNet or similar resources, that website receives your request and handles data under its own policy.</li>
-        <li><strong>User-controlled exports/shares:</strong> if you export a PDF, send a coordinator message or share information outside the App, that information is handled by the recipient/app you choose.</li>
-        <li><strong>Legal/safety disclosures:</strong> we may disclose limited information where required by law or to protect rights, safety, security or prevent abuse.</li>
-      </ul>
-      <p>We do not sell personal data. We do not currently serve advertising. If advertising or AdMob is added later, this policy and any required consent flows must be updated before launch of that feature.</p>
-
-      <h2>11. International transfers</h2>
-      <p>Cloud Firestore is configured with a europe-west2 (London) database location. Some Firebase/Google services, Apple services, analytics, crash reporting, AI processing, support or security processing may involve processing in other countries. Where required by applicable law, transfers are handled using safeguards or transfer mechanisms used by the relevant provider. Nothing in this policy creates responsibilities beyond those imposed by applicable law.</p>
-
-      <h2>12. Retention</h2>
-      <ul>
-        <li>Local data remains on your device until you delete it, clear app data or uninstall the App.</li>
-        <li>Firestore signal-sharing data remains until you delete your account, remove links/invites/signals where supported, or until it is deleted under our operational processes, subject to legal, security, abuse-prevention, backup and technical limitations.</li>
-        <li>AI chat history is not stored by the App in Firestore for ordinary AI use in the current version, unless you opt in to AI-improvement review.</li>
-        <li>AI-improvement records, where you explicitly opt in, may be retained for up to 12 months and then deleted or anonymised unless a shorter period is required or you delete your account earlier.</li>
-        <li>Crashlytics and Analytics data are retained according to Firebase/Google retention settings and operational requirements.</li>
-        <li>Backups, logs and provider-retained records may persist for a limited period after deletion where technically necessary, legally required, or maintained by a third-party provider under its own lawful retention practices.</li>
-      </ul>
-
-      <h2>13. Your rights</h2>
-      <p>Subject to applicable law, conditions and exemptions, you may have rights to request access, correction, deletion, restriction, objection, portability and withdrawal of consent where processing is based on consent. Nothing in this policy is intended to create rights beyond those required by applicable law.</p>
-      <p>For local-only data, you can usually control the data directly by editing or deleting it in the App, using local clear-data functions where available, or uninstalling the App. For account and Firestore data controlled by the App, use the in-app delete-account function where available or contact us.</p>
-      <p>You can withdraw optional Analytics consent, AI-context consent and AI-improvement review consent in the App’s settings where implemented. Withdrawal does not affect processing that occurred before withdrawal. Where technically and legally possible, future optional collection for that purpose should stop. Account deletion is subject to the limitations described in this policy.</p>
-
-      <h2>14. Security</h2>
-      <p>We use reasonable technical and organisational measures appropriate to a small pre-release app, including iOS sandboxing, platform security, Firebase security features, Firestore security rules and App Check. No system is completely secure. You are responsible for protecting your device, passcode, Apple account and any exported files or messages.</p>
-
-      <h2>15. Children</h2>
-      <p>The App is intended for users aged 16 and over. Users under 16 must not use the App. We do not knowingly collect personal data from children under 16. If you believe a child has provided personal data, contact us.</p>
-
-      <h2>16. Changes to this policy</h2>
-      <p>We may update this policy to reflect app, legal or technical changes. Updated versions may be made available in-app, through TestFlight/App Store release notes, or by another reasonable method. If a change materially expands optional processing such as Analytics, advertising or AI-improvement review, we will request any new consent required by applicable law.</p>
-
-      <h2>17. Contact and complaints</h2>
-      <p>Contact: Harry Roderick Johannes Spiller, <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a>.</p>
-      <p>If you are in the UK, you may complain to the Information Commissioner’s Office where applicable. We ask that you contact us first where possible so we can try to resolve the issue. This policy does not create complaint or remedy rights beyond those required by applicable law.</p>
+        <div class="contact-card" style="text-align:center;">
+          <p style="margin-bottom:24px;font-size:15px;">For questions about Skratch Tracker, privacy concerns, data deletion requests, or general feedback, please email:</p>
+          <a href="mailto:hrjs781@icloud.com" style="font-size:18px;">hrjs781@icloud.com</a>
+          <p style="margin-top:24px;font-size:12px;color:var(--text-muted);">We aim to respond within 48 hours.</p>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -407,6 +532,30 @@
   </footer>
 
   <script>
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById('page-' + page);
+      if (target) target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('navLinks').classList.remove('open');
+    }
+
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    function toggleFaq(el) {
+      el.parentElement.classList.toggle('open');
+    }
+
+    function handleHash() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById('page-' + hash)) showPage(hash);
+    }
+
+    window.addEventListener('hashchange', handleHash);
+    handleHash();
+
     (function() {
       const canvas = document.getElementById('network-canvas');
       const ctx = canvas.getContext('2d');
@@ -448,7 +597,6 @@
             const dx = nodes[j].x - nodes[i].x;
             const dy = nodes[j].y - nodes[i].y;
             const d = Math.sqrt(dx * dx + dy * dy);
-
             if (d < MAX_DIST) {
               const a = (1 - d / MAX_DIST) * 0.25;
               ctx.beginPath();
@@ -471,11 +619,7 @@
         requestAnimationFrame(animate);
       }
 
-      window.addEventListener('resize', () => {
-        resize();
-        initNodes();
-      });
-
+      window.addEventListener('resize', () => { resize(); initNodes(); });
       resize();
       initNodes();
       animate();
