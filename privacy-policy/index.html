@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Skratch Tracker — Privacy Policy</title>
   <meta name="description" content="Privacy Policy for Skratch Tracker." />
+
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="apple-touch-icon" href="/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,8 +40,10 @@
 
     #network-canvas {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: 0;
       opacity: 0.5;
       pointer-events: none;
@@ -47,8 +51,10 @@
 
     .aurora-overlay {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
       pointer-events: none;
       background:
@@ -59,7 +65,9 @@
 
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       padding: 16px 24px;
       display: flex;
@@ -76,6 +84,7 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .nav-logo {
@@ -94,20 +103,32 @@
     }
 
     .nav-links {
-      display: flex;
+      display: flex !important;
       gap: 28px;
       list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      max-width: 70vw;
+    }
+
+    .nav-links li {
+      display: list-item !important;
     }
 
     .nav-links a {
+      display: inline-block !important;
       color: var(--text-muted);
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
-    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
 
     main {
       position: relative;
@@ -159,15 +180,20 @@
       margin: 22px 0;
     }
 
-    ul {
-      margin: 0 0 18px 0;
-      padding-left: 22px;
+    .summary p {
+      margin-bottom: 0;
     }
 
-    li {
+    .legal-content ul {
+      margin: 0 0 18px 20px;
+      padding: 0;
+    }
+
+    .legal-content li {
       font-size: 14px;
       color: var(--text-body);
-      margin-bottom: 9px;
+      margin-bottom: 10px;
+      line-height: 1.7;
     }
 
     a {
@@ -175,7 +201,9 @@
       text-decoration: none;
     }
 
-    a:hover { text-decoration: underline; }
+    a:hover {
+      text-decoration: underline;
+    }
 
     footer {
       position: relative;
@@ -200,17 +228,42 @@
       font-weight: 500;
     }
 
+    .footer-links a:hover {
+      color: var(--text-body);
+    }
+
     .footer-copy {
       font-size: 11px;
       color: var(--text-faint);
     }
 
     @media (max-width: 640px) {
-      .nav-links { gap: 14px; }
-      .nav-links a { font-size: 12px; }
-      main { padding: 115px 16px 70px; }
-      .legal-content { padding: 24px; }
-      h1 { font-size: 24px; }
+      nav {
+        align-items: flex-start;
+        padding: 14px 16px;
+        gap: 12px;
+      }
+
+      .nav-links {
+        gap: 8px 12px;
+        max-width: 210px;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      main {
+        padding: 140px 16px 70px;
+      }
+
+      .legal-content {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
@@ -229,7 +282,7 @@
       <li><a href="/#features">Features</a></li>
       <li><a href="/#faq">FAQ</a></li>
       <li><a href="/#contact">Contact</a></li>
-      <li><a href="/privacy-policy/">Privacy</a></li>
+      <li><a href="/privacy-policy/" aria-current="page" style="color: var(--text-primary); font-weight: 800;">Privacy</a></li>
       <li><a href="/terms-of-service/">Terms</a></li>
     </ul>
   </nav>
@@ -384,6 +437,7 @@
         for (const n of nodes) {
           n.x += n.vx;
           n.y += n.vy;
+
           if (n.x < 0 || n.x > w) n.vx *= -1;
           if (n.y < 0 || n.y > h) n.vy *= -1;
         }
@@ -393,6 +447,7 @@
             const dx = nodes[j].x - nodes[i].x;
             const dy = nodes[j].y - nodes[i].y;
             const d = Math.sqrt(dx * dx + dy * dy);
+
             if (d < MAX_DIST) {
               const a = (1 - d / MAX_DIST) * 0.25;
               ctx.beginPath();
@@ -415,7 +470,11 @@
         requestAnimationFrame(animate);
       }
 
-      window.addEventListener('resize', () => { resize(); initNodes(); });
+      window.addEventListener('resize', () => {
+        resize();
+        initNodes();
+      });
+
       resize();
       initNodes();
       animate();
