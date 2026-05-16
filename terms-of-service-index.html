@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — Skratch Tracker</title>
+  <meta name="description" content="Skratch Tracker terms of service.">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #030307;
+      --card-border: rgba(255,255,255,0.06);
+      --accent: rgba(115,89,191,1);
+      --accent-glow: rgba(115,89,191,0.15);
+      --text-primary: rgba(255,255,255,0.92);
+      --text-body: rgba(255,255,255,0.62);
+      --text-muted: rgba(255,255,255,0.40);
+      --text-faint: rgba(255,255,255,0.22);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-body);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .aurora-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 80%, rgba(115,89,191,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(90,70,160,0.04) 0%, transparent 50%);
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(3,3,7,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .nav-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 130px 24px 80px;
+    }
+    .legal-content {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+    h2 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 34px 0 12px;
+    }
+    p, li {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-body);
+      margin-bottom: 14px;
+    }
+    ul {
+      padding-left: 22px;
+      margin-bottom: 16px;
+    }
+    li { padding-left: 4px; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    .last-updated {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .summary {
+      padding: 20px;
+      background: var(--accent-glow);
+      border: 0.5px solid rgba(115,89,191,0.25);
+      border-radius: 12px;
+      margin: 24px 0 28px;
+    }
+    .summary p { margin-bottom: 0; }
+    .warning {
+      padding: 20px;
+      background: rgba(200,60,60,0.08);
+      border: 0.5px solid rgba(200,60,60,0.22);
+      border-radius: 12px;
+      margin: 18px 0 20px;
+    }
+    .warning p {
+      color: rgba(255,255,255,0.78);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      margin-bottom: 0;
+    }
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--card-border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      main { padding-top: 110px; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="aurora-overlay"></div>
+
+  <nav>
+    <a href="/" class="nav-brand">
+      <img src="/logo.png" alt="Skratch Tracker" class="nav-logo">
+      <span class="nav-title">Skratch Tracker</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/privacy-policy/">Privacy</a></li>
+      <li><a href="/terms-of-service/">Terms</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="legal-content">
+      <h1>Skratch Tracker — Terms of Service</h1>
+      <p class="last-updated">Effective date: 16 May 2026</p>
+      <p>These Terms govern your use of Skratch Tracker (the "App"). The App is operated by Harry Roderick Johannes Spiller ("we", "us", "our"). Contact: <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a>. If the App is later transferred to a company, the operator details should be updated before release.</p>
+      <p>By downloading, installing, accessing or using the App, you agree to these Terms. If you do not agree, do not use the App.</p>
+      <h2>1. What the App does</h2>
+      <p>The App is a personal scabies-related tracking, organisation and general information tool. It may allow users to log symptoms, photographs, treatment steps, close contacts, recovery progress and reminders; export summaries; access region-specific resource links; use optional signal sharing with linked contacts; and use an AI assistant for general information and app guidance.</p>
+      <p>Some features are local-only. Some optional features use cloud services, including Sign in with Apple, Firebase Authentication, Cloud Firestore, Firebase AI Logic, Firebase App Check, Firebase Analytics, Firebase Crashlytics and Firebase Messaging.</p>
+      <p>The App may be provided as a pre-release, beta or TestFlight version. Beta versions may be incomplete, unstable, inaccurate, interrupted, changed, withdrawn or reset at any time.</p>
+      <h2>2. Not medical advice, diagnosis or treatment</h2>
+      <div class="warning"><p>THE APP IS NOT A MEDICAL DEVICE. IT DOES NOT PROVIDE MEDICAL ADVICE, DIAGNOSIS, TREATMENT, CLEARANCE, EXPOSURE NOTIFICATION, PRESCRIPTION, TRIAGE OR CLINICAL DECISION-MAKING.</p></div>
+      <p>Concern levels, self-checks, recovery checks, contact-risk estimates, AI responses, treatment information, reminders, contextual suggestions, exported summaries, signal-sharing features and all other outputs are for personal organisation and general information only. They are based on information you enter and cannot replace clinical assessment, medical examination, testing, medical history, professional judgement or advice from a qualified healthcare professional.</p>
+      <p>The App cannot confirm whether you have scabies or any other condition. It cannot confirm whether treatment has worked. It cannot confirm whether you are infectious, non-infectious, exposed, unexposed, cured or safe to have close contact with another person.</p>
+      <p>You must seek advice from a doctor, pharmacist, dermatologist, sexual health clinic or other qualified healthcare professional for medical questions, diagnosis, treatment decisions, worsening symptoms, uncertainty, persistent symptoms, pregnancy, infants, immunosuppression, severe skin reactions or any urgent concern.</p>
+      <p>If you believe you may have a medical emergency, serious allergic reaction, severe skin reaction, rapidly worsening symptoms, infection, breathing difficulty, swelling of the face or throat, or any other urgent health concern, contact emergency services or urgent medical care immediately.</p>
+      <p>No doctor-patient, pharmacist-patient, clinician-patient or other professional healthcare relationship is created by your use of the App.</p>
+      <h2>3. AI assistant and AI context</h2>
+      <p>The AI assistant may generate inaccurate, incomplete, outdated, misleading or unsuitable information. It does not know your full medical history and is not a healthcare professional. Do not rely on AI output as medical advice. Verify important information with authoritative health resources and a qualified healthcare professional.</p>
+      <p>The App may offer: (a) basic AI, which sends only the question you type; and (b) context-aware AI, which may send a minimised summary of selected App context to Firebase AI / Google, such as treatment status, recent symptom pattern, recent symptom categories, concern level, contact-risk estimate and signal-sharing status.</p>
+      <p>Context-aware AI is optional and requires your separate opt-in. If you do not opt in to context-aware AI, that enhanced feature may be unavailable, but you may still be able to ask without App context.</p>
+      <p>The App must not be used to obtain urgent medical advice, emergency advice, diagnosis, treatment instructions or clearance decisions from AI.</p>
+      <h2>4. AI improvement review</h2>
+      <p>The App may separately ask whether you agree to AI improvement review. If you opt in, we may store and review your AI questions, AI responses and selected minimised App context to improve the AI feature, safety, reliability and user experience. This may include health-related information.</p>
+      <p>AI improvement review is optional. You can use the App and the AI feature without agreeing to AI improvement review, although context-aware AI still requires the separate AI context opt-in described above.</p>
+      <p>Unless you clearly opt in, we do not intentionally store your AI conversations for product-improvement review. AI improvement records controlled by us will be retained for up to 12 months, then deleted or anonymised, unless a shorter period is required by law or the data is deleted earlier through account deletion or a valid data-rights request.</p>
+      <h2>5. Your responsibilities</h2>
+      <p>You are responsible for the accuracy, completeness and timing of information you enter into the App.</p>
+      <p>You are responsible for deciding whether and when to seek professional medical advice.</p>
+      <p>You are responsible for protecting your device, account, passcode, biometric access, exported files and any information you choose to share.</p>
+      <p>You are responsible for your use of exported PDFs, messages, invite codes, signal-sharing features and any communications with other people.</p>
+      <p>You must not use the App for unlawful purposes, to harass others, to mislead contacts, to send false signals, to impersonate another person, to interfere with the App or its services, or to attempt to access another user’s data.</p>
+      <p>You must not reverse engineer, decompile, copy, scrape, overload, attack, bypass security controls, misuse Firebase services or otherwise misuse the App, except where applicable law expressly permits.</p>
+      <h2>6. Signal sharing</h2>
+      <p>Signal sharing is optional and requires sign-in. It is designed to send a generic alert to linked contacts if your concern level reaches the highest threshold and signal sharing is enabled. It does not send symptom details, photos, body areas, treatment notes, free-text health data, names, emails, Apple identifiers or invite codes as the alert content.</p>
+      <p>Signals are not clinical alerts, diagnoses, exposure notifications or public-health notifications. They may be delayed, fail to send, be unavailable, be misunderstood, or be based on incomplete or inaccurate data. You remain responsible for any communications with real-world contacts and for seeking medical advice.</p>
+      <h2>7. Accounts, cloud features and deletion</h2>
+      <p>You may use account features through Sign in with Apple and Firebase Authentication. Account and cloud features may require network access and third-party services.</p>
+      <p>Where the App provides an account deletion function, we will use reasonable efforts to delete the Firebase account and associated Firestore signal-sharing data controlled by the App. Local device data may need to be cleared separately depending on your app settings and version.</p>
+      <p>Deletion does not apply to data outside our control, including data already exported, shared with another person, retained in third-party systems, retained for security or legal reasons, retained in backups for a limited period, or stored locally unless separately cleared.</p>
+      <p>We may suspend, restrict, disable or delete cloud features or accounts where reasonably necessary for security, abuse prevention, maintenance, legal compliance, service integrity, suspected misuse, or protection of other users.</p>
+      <h2>8. Privacy</h2>
+      <p>Our <a href="/privacy-policy/">Privacy Policy</a> explains how data is collected, used, stored and shared. You must read it together with these Terms.</p>
+      <p>The App currently does not use AdMob or advertising. If advertising is introduced later, the Privacy Policy, App Store privacy disclosures and any required consent flows must be updated before advertising is enabled.</p>
+      <h2>9. External resources and third-party services</h2>
+      <p>The App may link to third-party websites and resources such as NHS, CDC, WHO, DermNet or other health-information providers. Links are provided for convenience and general information only. We do not control, endorse or accept responsibility for third-party content, accuracy, availability, privacy practices, services or advice.</p>
+      <p>The App also depends on Apple, Google, Firebase and other third-party services. Their availability, performance, security and data handling may be governed by their own terms and policies. We are not responsible for failures, delays, outages, changes, pricing, restrictions, suspensions or data-handling practices of third-party services except to the extent required by law.</p>
+      <h2>10. Notifications and reminders</h2>
+      <p>Reminders and notifications are convenience tools only. They may be delayed, fail to appear, be disabled by your device settings, be affected by operating-system restrictions, or become inaccurate if you enter incorrect information.</p>
+      <p>They are not clinical instructions. Always follow medicine leaflets, product warnings and professional advice.</p>
+      <h2>11. No warranties</h2>
+      <p>The App is provided on an “as is” and “as available” basis. To the fullest extent permitted by law, we do not warrant that the App will be accurate, uninterrupted, error-free, secure, clinically appropriate, available at all times, compatible with all devices, or suitable for your circumstances.</p>
+      <p>We do not warrant that concern levels, AI output, contact-risk estimates, quizzes, reminders, signal-sharing features, exported summaries, links or suggestions will be accurate, complete, available, timely or suitable for any healthcare decision.</p>
+      <p>Except for rights, warranties or guarantees that cannot legally be excluded, all express or implied warranties, conditions, representations and guarantees are excluded to the fullest extent permitted by law.</p>
+      <h2>12. Limitation of liability</h2>
+      <p>Nothing in these Terms excludes or limits liability for death or personal injury caused by negligence, fraud, fraudulent misrepresentation, breach of statutory rights that cannot be excluded, or any other liability that cannot legally be excluded or limited.</p>
+      <p>To the fullest extent permitted by law, the App is provided for personal tracking and general information only. We are not liable for loss or damage arising from reliance on concern levels, contact-risk estimates, AI responses, quizzes, reminders, treatment prompts, exported summaries, linked-contact signals, third-party links, or any other App output as a substitute for professional medical advice.</p>
+      <p>To the fullest extent permitted by law, we are not liable for: indirect, incidental, consequential, special, punitive or exemplary loss; loss of profit, revenue, goodwill, opportunity, business or data; service interruption; loss or corruption of local data; device, operating-system, network, Firebase, Apple, Google or third-party failure; loss caused by inaccurate, incomplete or delayed user entries; unauthorised access caused by your device/account security; or consequences of information you export, share or disclose to another person.</p>
+      <p>Subject only to liability that cannot lawfully be excluded or limited, our total aggregate liability arising out of or in connection with the App, these Terms, or any related claim is limited to the greater of: (a) the amount you paid us for the App or relevant paid feature in the 12 months before the claim; or (b) £10.</p>
+      <p>Any limitation or exclusion in these Terms applies only to the extent permitted by applicable law. You are responsible for taking reasonable steps to reduce or avoid loss, including seeking appropriate medical advice where relevant.</p>
+      <h2>13. Non-excludable consumer rights</h2>
+      <p>Nothing in these Terms is intended to exclude, restrict or misstate rights that cannot lawfully be excluded or restricted. Except for such non-excludable rights, all rights, remedies, warranties, conditions and guarantees are excluded to the fullest extent permitted by law.</p>
+      <p>If any mandatory consumer law applies despite these Terms, it applies only to the minimum extent required by that law.</p>
+      <h2>14. Intellectual property and licence</h2>
+      <p>The App, including its design, code, text, graphics, algorithms, branding and compilation, is owned by us or our licensors and protected by intellectual property laws.</p>
+      <p>You are granted a personal, limited, revocable, non-exclusive, non-transferable licence to use the App for lawful personal purposes on Apple-branded devices that you own or control, subject to these Terms and Apple’s applicable App Store terms.</p>
+      <p>We may revoke or restrict this licence if you breach these Terms or misuse the App.</p>
+      <h2>15. Acceptable use</h2>
+      <p>You must not: (a) misuse signal sharing, invite codes, AI features or cloud services; (b) attempt to access another user’s data; (c) interfere with Firestore, Firebase, App Check or other services; (d) upload, enter or share unlawful, abusive, misleading or harmful content; (e) use the App as an emergency, diagnostic, medical-device, exposure-notification or public-health-alert system; (f) bypass access controls, rate limits, security controls or App Check protections; (g) use the App to build, train or improve a competing product except where law permits.</p>
+      <h2>16. Changes, suspension and discontinuation</h2>
+      <p>We may update, change, suspend, restrict or discontinue the App or any feature at any time, including during TestFlight or pre-release testing. We may also update these Terms from time to time.</p>
+      <p>Continued use of the App after updated Terms are made available constitutes acceptance of the updated Terms. If you do not agree to updated Terms, you must stop using the App.</p>
+      <h2>17. Apple terms</h2>
+      <p>Where the App is obtained through Apple’s App Store or TestFlight, Apple is not responsible for the App, its content, maintenance, support, claims, investigation, product liability, intellectual-property claims, or any failure of the App to comply with law, except to the extent required by Apple’s applicable terms. Apple and its subsidiaries are third-party beneficiaries of these Terms and may enforce them to the extent applicable.</p>
+      <p>Your use of the App must also comply with Apple’s applicable App Store, TestFlight and device terms.</p>
+      <h2>18. Governing law and disputes</h2>
+      <p>These Terms, and any dispute or claim arising out of or in connection with them or the App, are governed by the laws of England and Wales.</p>
+      <p>To the fullest extent permitted by applicable law, the courts of England and Wales shall have exclusive jurisdiction over any dispute or claim arising out of or in connection with these Terms or the App.</p>
+      <p>The fact that the App may be downloaded, accessed or used outside England and Wales does not mean that we submit to the laws or courts of any other country, except where this cannot lawfully be excluded.</p>
+      <p>Before starting formal proceedings, you agree to contact us at <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a> with a short description of the issue so that we can try to resolve it informally. This does not prevent either party from seeking urgent relief or exercising any legal right that cannot be excluded.</p>
+      <p>These Terms do not require mandatory arbitration.</p>
+      <h2>19. General</h2>
+      <ul>
+      <li>Entire agreement. These Terms and the Privacy Policy form the entire agreement between you and us regarding the App.</li>
+      <li>Severability. If any part of these Terms is found unlawful, invalid or unenforceable, that part will be treated as modified or removed to the minimum extent necessary, and the rest will continue to apply.</li>
+      <li>No waiver. If we do not enforce a right immediately, that does not mean we waive it.</li>
+      <li>Assignment. You may not transfer your rights or obligations under these Terms without our written consent. We may transfer our rights or obligations to a company or successor operator, provided this does not reduce any rights that cannot lawfully be reduced.</li>
+      <li>Force majeure. We are not responsible for failure or delay caused by events outside our reasonable control.</li>
+      </ul>
+      <h2>20. Contact</h2>
+      <p>Questions about these Terms should be sent to: <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a>.</p>
+      <p>© 2026 Harry Roderick Johannes Spiller. All rights reserved.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms-of-service/">Terms of Service</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Skratch Tracker. All rights reserved.</p>
+  </footer>
+</body>
+</html>
