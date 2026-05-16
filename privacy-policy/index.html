@@ -437,7 +437,6 @@
         for (const n of nodes) {
           n.x += n.vx;
           n.y += n.vy;
-
           if (n.x < 0 || n.x > w) n.vx *= -1;
           if (n.y < 0 || n.y > h) n.vy *= -1;
         }
