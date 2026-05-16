@@ -1,1 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Skratch Tracker — Privacy Policy</title>
+  <meta name="description" content="Privacy Policy for Skratch Tracker." />
+
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #030307;
+      --card-bg: rgba(255,255,255,0.025);
+      --card-border: rgba(255,255,255,0.06);
+      --accent: rgba(115,89,191,1);
+      --accent-glow: rgba(115,89,191,0.15);
+      --text-primary: rgba(255,255,255,0.92);
+      --text-body: rgba(255,255,255,0.58);
+      --text-muted: rgba(255,255,255,0.38);
+      --text-faint: rgba(255,255,255,0.22);
+      --radius: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-body);
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    #network-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .aurora-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 80%, rgba(115,89,191,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(90,70,160,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 60% at 50% 100%, rgba(60,40,120,0.03) 0%, transparent 40%);
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(3,3,7,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .nav-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex !important;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      max-width: 70vw;
+    }
+
+    .nav-links li {
+      display: list-item !important;
+    }
+
+    .nav-links a {
+      display: inline-block !important;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 140px 24px 90px;
+    }
+
+    .legal-content {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 0.5px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 34px;
+    }
+
+    h1 {
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 34px 0 12px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--text-body);
+      margin-bottom: 14px;
+    }
+
+    .last-updated {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .summary {
+      padding: 18px;
+      background: var(--accent-glow);
+      border: 0.5px solid rgba(115,89,191,0.25);
+      border-radius: 12px;
+      margin: 22px 0;
+    }
+
+    .summary p {
+      margin-bottom: 0;
+    }
+
+    .legal-content ul {
+      margin: 0 0 18px 20px;
+      padding: 0;
+    }
+
+    .legal-content li {
+      font-size: 14px;
+      color: var(--text-body);
+      margin-bottom: 10px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--card-border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-body);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        align-items: flex-start;
+        padding: 14px 16px;
+        gap: 12px;
+      }
+
+      .nav-links {
+        gap: 8px 12px;
+        max-width: 210px;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      main {
+        padding: 140px 16px 70px;
+      }
+
+      .legal-content {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="network-canvas"></canvas>
+  <div class="aurora-overlay"></div>
+
+  <nav>
+    <a href="/" class="nav-brand">
+      <img src="/logo.png" alt="Skratch Tracker" class="nav-logo" />
+      <span class="nav-title">Skratch Tracker</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/#contact">Contact</a></li>
+      <li><a href="/privacy-policy/" aria-current="page" style="color: var(--text-primary); font-weight: 800;">Privacy</a></li>
+      <li><a href="/terms-of-service/">Terms</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="legal-content">
+      <h1>Skratch Tracker — Privacy Policy</h1>
+      <p class="last-updated">Effective date: 16 May 2026</p>
+
+      <p>This Privacy Policy explains how Skratch Tracker (the "App") collects, uses, stores and shares personal data. The App is operated by Harry Roderick Johannes Spiller ("we", "us", "our"). Contact: <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a>.</p>
+
+      <p>This policy is written for the current pre-release/TestFlight version of the App. If the App is later transferred to a company, or if advertising such as Google AdMob is introduced, this policy must be updated before that change goes live.</p>
+
+      <div class="summary">
+        <p><strong>Important summary:</strong> The App is a personal tracking and information tool. It is not a medical device and does not provide diagnosis, treatment, clinical advice or clearance. Some data you enter may be health-related. We aim to minimise what leaves your device and to separate optional analytics and AI-improvement processing from core app functionality.</p>
+      </div>
+
+      <h2>1. Who is responsible for your data?</h2>
+      <p>The data controller for data processed by the App is Harry Roderick Johannes Spiller, currently based in the United Kingdom. Email: <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a>.</p>
+      <p>Where third-party services process data under their own terms or for their own legally permitted purposes, including Apple and Google/Firebase, their own privacy notices may also apply. Where those services act as data processors on our behalf, they do so under their applicable data-processing terms.</p>
+
+      <h2>2. App features and data map</h2>
+      <p>The App currently uses Firebase Authentication, Cloud Firestore, Firebase AI Logic, Firebase App Check, Firebase Analytics, Firebase Crashlytics and Firebase Cloud Messaging/Messaging. The Firestore database location is europe-west2 (London).</p>
+      <p>Most symptom tracking data is intended to remain local to your device. Local data may include symptom logs, skin photographs, treatment records, self-check and recovery quiz answers, region preference and PDF exports created by you. Photos are stored on-device and are not sent to Firebase AI or Firestore by the App in the current version.</p>
+      <p>If you create an account or enable online signal-sharing features, limited account and signal-sharing data is stored in Firebase. This may include your Firebase user ID, Sign in with Apple account identifiers made available to the App, signal-sharing profile records, linked-contact relationship records, invite/link records, generic concern-level status or signal state, treatment-status category needed for signal logic, timestamps and technical metadata.</p>
+      <p>Signal sharing is designed to share a generic status/signal with linked users. It is not designed to share symptom details, photographs, names of contacts, free-text notes, email addresses, Apple identifiers, invite codes or full raw logs.</p>
+
+      <h2>3. Health-related and sensitive data</h2>
+      <p>Information about symptoms, skin photographs, treatment use, contacts, AI questions and app context may reveal health-related information. Under UK and EU GDPR, data concerning health is a special category. We treat this as sensitive and seek to minimise what is processed outside your device.</p>
+      <p>Signal sharing does not share symptom details. It uses a generic alert/status to linked users if your concern level reaches the highest threshold and signal sharing is enabled.</p>
+      <p>The App may compute a concern level or contact-risk estimate locally using information you enter. This processing is deterministic and rule-based. It does not produce legal effects or similarly significant effects concerning you within the meaning of Article 22 UK GDPR or EU GDPR, and no decisions about you are made solely on the basis of automated processing. These outputs are provided solely as a self-tracking aid and do not constitute medical assessment or diagnosis.</p>
+      <p>The AI feature may receive health-related context only if you choose to use AI and, for app-context mode, opt in to sending a minimised app-context summary. Do not use the AI feature for emergencies or for confidential information you do not want processed by an external AI service.</p>
+
+      <h2>4. Legal bases for processing</h2>
+      <p>For UK GDPR and EU GDPR purposes, we rely on the following legal bases where applicable:</p>
+      <ul>
+        <li><strong>Contract or steps necessary to provide the requested service:</strong> to operate core app functionality, account features, signal sharing, Firestore-backed linking, AI responses requested by you, and account deletion.</li>
+        <li><strong>Explicit consent (Article 9(2)(a)) / consent (Article 6(1)(a)):</strong> for optional analytics collection; for context-aware AI where health-related app context is sent to Firebase AI / Google; and for optional AI-improvement review where AI questions, AI responses and selected app context are stored or reviewed to improve the feature. Where health-related data is involved, explicit consent under Article 9(2)(a) is the condition for processing special-category data.</li>
+        <li><strong>Legitimate interests (Article 6(1)(f)):</strong> for security, fraud prevention, abuse prevention, app reliability, Crashlytics diagnostics, App Check and necessary service logs, provided this does not override your rights and freedoms. You have the right to object to processing based on legitimate interests (see Section 13).</li>
+        <li><strong>Legitimate interests (Article 6(1)(f)):</strong> for Firebase AI operational monitoring used to measure request volume, latency, errors, token usage and model performance for service reliability. A Cloud Logging exclusion filter is applied to prevent storage of AI prompt or response content in operational logs. This monitoring records only aggregate performance metrics and does not store or review what you ask the AI or what it replies. You have the right to object to this processing (see Section 13).</li>
+        <li><strong>Legal obligation:</strong> where we must retain or disclose limited information to comply with law, regulator requests or legal process.</li>
+      </ul>
+      <p>Where we rely on legitimate interests, we have conducted a balancing assessment and concluded that the processing is necessary for the stated purposes, is proportionate, and does not override the rights and freedoms of data subjects given the limited and non-content nature of the data involved.</p>
+
+      <h2>5. Analytics consent</h2>
+      <p>Firebase Analytics is optional. The App is intended not to enable Firebase Analytics until you have been shown a clear choice and you select "Allow analytics" or equivalent. If you decline, the App should remain usable and Firebase Analytics should stay disabled.</p>
+      <p>Analytics is used only to monitor aggregate app and feature use. We do not use Analytics for advertising, profiling, eligibility decisions, medical decisions or automated decision-making. We do not knowingly send symptom details, photographs, AI question text, treatment entries, body areas, contact names, invite codes, Apple identifiers, email addresses, free-text notes, or quiz answers to Analytics.</p>
+      <p>Analytics events should be broad feature-use events only, such as opening a screen, using export, opening AI, using signal sharing or completing a non-content-specific flow. You can withdraw Analytics consent in the App's settings where implemented. Withdrawal takes effect for future collection; it does not affect data already collected during the period consent was active.</p>
+
+      <h2>6. Crashlytics and diagnostics</h2>
+      <p>Firebase Crashlytics helps us detect and fix crashes. Crash reports may include technical details such as device model, iOS version, app version, timestamps, stack traces and diagnostic state. We do not intentionally log symptom details, AI question text, photographs, treatment notes, contact names, email addresses, Apple identifiers, invite codes or other health content into Crashlytics.</p>
+      <p>Crashlytics data is processed under legitimate interests for app reliability and crash resolution. It does not require separate consent because the data collected is limited to technical diagnostics and does not include health content.</p>
+
+      <h2>7. Authentication and account deletion</h2>
+      <p>If you use signal sharing or online features, you may sign in using Sign in with Apple and Firebase Authentication. We use this to create a Firebase user ID and to associate Firestore signal-sharing records with your account.</p>
+      <p>Where the App provides an account deletion function, we will use reasonable efforts to delete your Firebase Authentication account and Firestore records controlled by the App and associated with your signal-sharing profile, links, invites, signals and any AI-improvement records stored by the App for that account. Local data may need to be cleared separately using the local clear-data function where available, or by uninstalling the App.</p>
+      <p>Deletion does not necessarily remove data already exported, shared with another person, stored locally unless separately cleared, retained in backups or logs for a limited period, retained by third-party providers under their own terms, or retained where required for legal, security or abuse-prevention reasons. We do not promise deletion of data outside our control.</p>
+
+      <h2>8. AI feature, app-context mode and AI-improvement review</h2>
+      <p>The Intelligence feature uses Firebase AI Logic / Google to generate responses. AI output is generated automatically and may be inaccurate, incomplete or unsuitable for your circumstances. It is not medical advice, diagnosis or treatment.</p>
+      <p>The App is intended to offer at least two AI modes. "Ask without app context" sends only the typed AI question and necessary technical request data. "Use app context" sends the typed AI question plus a minimised app-context summary, but only after you opt in to this context-aware processing.</p>
+      <p>The minimised app-context summary may include treatment status, recent symptom pattern, recent symptoms as broad categories, concern level, contact-risk estimate, contact-risk sharing status, region and other non-identifying app-state categories relevant to the response. The App is not intended to send photographs, names, email addresses, Apple identifiers, contact names, invite codes, free-text notes or full raw logs to Firebase AI in the current version.</p>
+      <p>AI-improvement review is separate from using the AI feature. If you explicitly opt in to AI-improvement review, the App may store your AI questions, AI responses and selected minimised app context in a pseudonymised form to improve AI quality, safety, reliability and feature performance. This may include health-related information. Records are associated with a pseudonymous identifier, not your name or email. You can use the AI feature without allowing AI-improvement review, and you can withdraw consent at any time in Settings.</p>
+      <p>If you do not opt in to AI-improvement review, the App does not store your AI conversation content for product-improvement review. Firebase AI / Google may still process your request transiently to generate a response and may process operational, safety, security or legal-compliance data under applicable Firebase/Google terms and settings.</p>
+      <p>We use Firebase AI operational monitoring to measure request volume, latency, errors, token usage and model performance for service reliability. This monitoring does not store AI prompt or response content. A Cloud Logging exclusion filter is applied at the Google Cloud project level to prevent prompt and response text from being written to operational logs. This exclusion applies to all AI requests regardless of whether you have opted in to AI-improvement review. The monitoring records only aggregate performance metrics (such as error rates, latency percentiles and token counts) and is processed under legitimate interests for service operation.</p>
+      <p>The App may offer a "Clear chat" control to remove the visible or locally held chat from the App. Clearing chat removes content controlled by the App; it does not necessarily delete information already processed by Firebase AI / Google for earlier response generation, safety, security, logging, service delivery or legal purposes.</p>
+
+      <h2>9. Notifications</h2>
+      <p>The App may use local notifications and/or Firebase Cloud Messaging. You can control notification permission through iOS Settings. Notification data should not contain detailed health information unless clearly explained and necessary for the notification you request.</p>
+
+      <h2>10. Sharing with third parties</h2>
+      <ul>
+        <li><strong>Apple:</strong> Sign in with Apple, App Store/TestFlight, StoreKit and device-level permissions.</li>
+        <li><strong>Google/Firebase:</strong> Authentication, Firestore, AI Logic, App Check, Analytics, Crashlytics and Messaging as described above.</li>
+        <li><strong>External health-resource websites:</strong> if you tap a link to NHS, CDC, WHO, DermNet or similar resources, that website receives your request and handles data under its own policy.</li>
+        <li><strong>User-controlled exports/shares:</strong> if you export a PDF, send a coordinator message or share information outside the App, that information is handled by the recipient/app you choose.</li>
+        <li><strong>Legal/safety disclosures:</strong> we may disclose limited information where required by law or to protect rights, safety, security or prevent abuse.</li>
+      </ul>
+      <p>We do not sell personal data. We do not share personal data for cross-context behavioural advertising. We do not currently serve advertising. If advertising or AdMob is added later, this policy and any required consent flows must be updated before launch of that feature.</p>
+
+      <h2>11. International transfers</h2>
+      <p>Cloud Firestore is configured with a europe-west2 (London) database location. Some Firebase/Google services, Apple services, analytics, crash reporting, AI processing, support or security processing may involve processing in other countries, including the United States. Where required by applicable law, transfers are handled using safeguards or transfer mechanisms used by the relevant provider, which may include Standard Contractual Clauses, adequacy decisions or other lawful mechanisms. Nothing in this policy creates responsibilities beyond those imposed by applicable law.</p>
+
+      <h2>12. Retention</h2>
+      <ul>
+        <li>Local data remains on your device until you delete it, clear app data or uninstall the App.</li>
+        <li>Firestore signal-sharing data remains until you delete your account, remove links/invites/signals where supported, or until it is deleted under our operational processes, subject to legal, security, abuse-prevention, backup and technical limitations.</li>
+        <li>AI chat history is not stored by the App in Firestore for ordinary AI use in the current version, unless you opt in to AI-improvement review.</li>
+        <li>AI-improvement records, where you explicitly opt in, may be retained for up to 12 months from creation and then deleted or anonymised, unless a shorter period is required, you withdraw consent earlier, or you delete your account. On consent withdrawal or account deletion, records are deleted within a reasonable period subject to technical and legal constraints.</li>
+        <li>Crashlytics and Analytics data are retained according to Firebase/Google retention settings and operational requirements.</li>
+        <li>Backups, logs and provider-retained records may persist for a limited period after deletion where technically necessary, legally required, or maintained by a third-party provider under its own lawful retention practices.</li>
+      </ul>
+
+      <h2>13. Your rights</h2>
+      <p>Subject to applicable law, conditions and exemptions, you may have rights to request access, correction, deletion, restriction, objection, portability and withdrawal of consent where processing is based on consent. Nothing in this policy is intended to create rights beyond those required by applicable law.</p>
+      <p>Where processing is based on legitimate interests (including AI operational monitoring, Crashlytics, security and abuse prevention), you have the right to object on grounds relating to your particular situation. On receiving an objection, we will cease the processing unless we demonstrate compelling legitimate grounds that override your interests, rights and freedoms, or the processing is necessary for the establishment, exercise or defence of legal claims.</p>
+      <p>For local-only data, you can usually control the data directly by editing or deleting it in the App, using local clear-data functions where available, or uninstalling the App. For account and Firestore data controlled by the App, use the in-app delete-account function where available or contact us.</p>
+      <p>You can withdraw optional Analytics consent, AI-context consent and AI-improvement review consent in the App's settings where implemented. Withdrawal does not affect the lawfulness of processing that occurred before withdrawal. Where technically and legally possible, future optional collection for that purpose should stop. Account deletion is subject to the limitations described in this policy.</p>
+      <p>To exercise any of these rights, contact us at <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a>. We will respond within one month of receiving your request, or inform you if an extension is needed.</p>
+
+      <h2>14. Security</h2>
+      <p>We use reasonable technical and organisational measures appropriate to a small pre-release app, including iOS sandboxing, platform security, Firebase security features, Firestore security rules and App Check. No system is completely secure. You are responsible for protecting your device, passcode, Apple account and any exported files or messages.</p>
+
+      <h2>15. Children</h2>
+      <p>The App is intended for users aged 16 and over. Users under 16 must not use the App. We do not knowingly collect personal data from children under 16. If you believe a child has provided personal data, contact us and we will take steps to delete it.</p>
+
+      <h2>16. Changes to this policy</h2>
+      <p>We may update this policy to reflect app, legal or technical changes. Updated versions may be made available in-app, through TestFlight/App Store release notes, or by another reasonable method. If a change materially expands optional processing such as Analytics, advertising or AI-improvement review, we will request any new consent required by applicable law before the expanded processing begins.</p>
+
+      <h2>17. Contact and complaints</h2>
+      <p>Contact: Harry Roderick Johannes Spiller, <a href="mailto:hrjs781@icloud.com">hrjs781@icloud.com</a>.</p>
+      <p>If you are in the UK, you may complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk">ico.org.uk</a> where applicable. If you are in the EU, you may complain to your local supervisory authority. We ask that you contact us first where possible so we can try to resolve the issue. This policy does not create complaint or remedy rights beyond those required by applicable law.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/#features">Features</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#contact">Contact</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms-of-service/">Terms of Service</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Skratch Tracker. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function() {
+      const canvas = document.getElementById('network-canvas');
+      const ctx = canvas.getContext('2d');
+      let w, h, nodes = [];
+      const NODE_COUNT = 40;
+      const MAX_DIST = 150;
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+
+      function initNodes() {
+        nodes = [];
+        for (let i = 0; i < NODE_COUNT; i++) {
+          nodes.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            r: 1.2 + Math.random() * 1.8,
+            alpha: 0.2 + Math.random() * 0.4
+          });
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (const n of nodes) {
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+        }
+
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[j].x - nodes[i].x;
+            const dy = nodes[j].y - nodes[i].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+
+            if (d < MAX_DIST) {
+              const a = (1 - d / MAX_DIST) * 0.25;
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.strokeStyle = `rgba(255,255,255,${a})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+
+        for (const n of nodes) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${n.alpha})`;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', () => {
+        resize();
+        initNodes();
+      });
+
+      resize();
+      initNodes();
+      animate();
+    })();
+  </script>
+</body>
+</html>
