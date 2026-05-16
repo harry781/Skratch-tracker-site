@@ -76,6 +76,7 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .nav-logo {
@@ -94,17 +95,27 @@
     }
 
     .nav-links {
-      display: flex;
+      display: flex !important;
       gap: 28px;
       list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      max-width: 70vw;
+    }
+
+    .nav-links li {
+      display: list-item !important;
     }
 
     .nav-links a {
+      display: inline-block !important;
       color: var(--text-muted);
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-links a:hover { color: var(--text-primary); }
@@ -203,11 +214,32 @@
     }
 
     @media (max-width: 640px) {
-      .nav-links { gap: 14px; }
-      .nav-links a { font-size: 12px; }
-      main { padding: 115px 16px 70px; }
-      .legal-content { padding: 24px; }
-      h1 { font-size: 24px; }
+      nav {
+        align-items: flex-start;
+        padding: 14px 16px;
+        gap: 12px;
+      }
+
+      .nav-links {
+        gap: 8px 12px;
+        max-width: 210px;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      main {
+        padding: 140px 16px 70px;
+      }
+
+      .legal-content {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
@@ -227,7 +259,7 @@
       <li><a href="/#faq">FAQ</a></li>
       <li><a href="/#contact">Contact</a></li>
       <li><a href="/privacy-policy/">Privacy</a></li>
-      <li><a href="/terms-of-service/">Terms</a></li>
+      <li><a href="/terms-of-service/" aria-current="page" style="color: var(--text-primary); font-weight: 800;">Terms</a></li>
     </ul>
   </nav>
 
@@ -259,7 +291,8 @@
       <p>The AI assistant may generate inaccurate, incomplete, outdated, misleading or unsuitable information. It does not know your full medical history and is not a healthcare professional. Do not rely on AI output as medical advice. Verify important information with authoritative health resources and a qualified healthcare professional.</p>
       <p>The App may offer: (a) basic AI, which sends only the question you type; and (b) context-aware AI, which may send a minimised summary of selected App context to Firebase AI / Google, such as treatment status, recent symptom pattern, recent symptom categories, concern level, contact-risk estimate and signal-sharing status.</p>
       <p>Context-aware AI is optional and requires your separate opt-in. If you do not opt in to context-aware AI, that enhanced feature may be unavailable, but you may still be able to ask without App context.</p>
-      <p>The App must not be used to obtain urgent medical advice, emergency advice, diagnosis, treatment instructions or clearance decisions from AI.</p>
+      <p>Use of context-aware AI and AI-improvement review is subject to the separate choices and privacy information described in the Privacy Policy.</p>
+      <p>You must not use the App to obtain urgent medical advice, emergency advice, diagnosis, treatment instructions or clearance decisions from AI.</p>
 
       <h2>4. AI improvement review</h2>
       <p>The App may separately ask whether you agree to AI improvement review. If you opt in, we may store and review your AI questions, AI responses and selected minimised App context to improve the AI feature, safety, reliability and user experience. This may include health-related information.</p>
