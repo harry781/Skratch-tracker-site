@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skratch Tracker — Private Scabies Symptom Tracking</title>
   <meta name="description" content="Track symptoms, log treatments, and manage recovery privately on your device. No accounts required. No health data uploaded.">
-  <link rel="icon" type="image/png" href="/logo.png">
-  <link rel="apple-touch-icon" href="/logo.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/logo-hero.png">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -132,9 +133,6 @@
       margin: 0 auto;
       padding: 0 24px;
     }
-
-    .page { display: none; padding: 60px 0 100px; }
-    .page.active { display: block; }
 
     .hero {
       text-align: center;
@@ -404,156 +402,78 @@
 
   <nav>
     <a href="/" class="nav-brand">
-      <img src="/logo.png" alt="Skratch Tracker" class="nav-logo">
+      <img src="/logo-nav.png" alt="Skratch Tracker" class="nav-logo">
       <span class="nav-title">Skratch Tracker</span>
     </a>
 
     <button class="nav-toggle" onclick="toggleNav()">&#9776;</button>
 
     <ul class="nav-links" id="navLinks">
-      <li><a href="#features" onclick="showPage('features')">Features</a></li>
-      <li><a href="#faq" onclick="showPage('faq')">FAQ</a></li>
-      <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
+      <li><a href="/features/">Features</a></li>
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/contact/">Contact</a></li>
       <li><a href="/privacy-policy/">Privacy</a></li>
       <li><a href="/terms-of-service/">Terms</a></li>
     </ul>
   </nav>
 
   <main>
-    <div class="page active" id="page-home">
-      <div class="container">
-        <div class="hero">
-          <img src="/logo.png" alt="Skratch Tracker" class="hero-logo">
-          <p class="hero-eyebrow">Private symptom tracking for iOS</p>
-          <h1>Track scabies symptoms privately on your device</h1>
-          <p>Log symptoms, photograph progress, manage treatments and share anonymised signals with close contacts. Your health data never leaves your phone unless you choose to export it.</p>
-          <a href="#" class="hero-cta">Download on the App Store</a>
-        </div>
+    <div class="container">
+      <div class="hero">
+        <img src="/logo-hero.png" alt="Skratch Tracker" class="hero-logo" fetchpriority="high">
+        <p class="hero-eyebrow">Private symptom tracking for iOS</p>
+        <h1>Track scabies symptoms privately on your device</h1>
+        <p>Log symptoms, photograph progress, manage treatments and share anonymised signals with close contacts. Your health data never leaves your phone unless you choose to export it.</p>
+        <a href="#" class="hero-cta">Download on the App Store</a>
+      </div>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">&#x1F512;</div>
-            <h3>Private by design</h3>
-            <p>All health data stays on your device. No account required. Optional Face ID lock keeps the app private even if someone has your phone.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#x1F4CB;</div>
-            <h3>Symptom tracking</h3>
-            <p>Log symptoms by body area, severity, and itchiness. Take dated photos, run self-check quizzes, and track your concern level over time.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#x1F48A;</div>
-            <h3>Treatment management</h3>
-            <p>Log treatments step by step &mdash; from permethrin cream through to GP referral. Get second-application reminders and 7-day recovery check-ins.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#x1F465;</div>
-            <h3>Contact network &amp; risk</h3>
-            <p>Track close contacts by relationship type. The app estimates contact risk across your network and highlights who may benefit from awareness.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#x1F514;</div>
-            <h3>Anonymous signal sharing</h3>
-            <p>Optionally link with contacts via invite codes. If your concern level reaches the highest threshold, they get a private in-app nudge &mdash; no health details shared.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#x2728;</div>
-            <h3>Built-in intelligence</h3>
-            <p>Ask questions in plain language and get answers grounded in public health sources. Context-aware suggestions appear when relevant to your situation.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#x1F4C4;</div>
-            <h3>GP summary export</h3>
-            <p>Generate a clinically formatted PDF with your symptom timeline, treatment history, and self-check results to bring to your appointment.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#x1F30D;</div>
-            <h3>Region-aware resources</h3>
-            <p>Set your region for relevant medical helplines, emergency numbers, and health service links. Supports UK nations, USA, and worldwide.</p>
-          </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F512;</div>
+          <h3>Private by design</h3>
+          <p>All health data stays on your device. No account required. Optional Face ID lock keeps the app private even if someone has your phone.</p>
         </div>
-
-        <div class="download-section">
-          <h2>Ready to take control?</h2>
-          <p>Free to download. No sign-up required. Your data stays yours.</p>
-          <a href="#" class="app-store-badge">Download for iOS</a>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F4CB;</div>
+          <h3>Symptom tracking</h3>
+          <p>Log symptoms by body area, severity, and itchiness. Take dated photos, run self-check quizzes, and track your concern level over time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F48A;</div>
+          <h3>Treatment management</h3>
+          <p>Log treatments step by step &mdash; from permethrin cream through to GP referral. Get second-application reminders and 7-day recovery check-ins.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F465;</div>
+          <h3>Contact network &amp; risk</h3>
+          <p>Track close contacts by relationship type. The app estimates contact risk across your network and highlights who may benefit from awareness.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F514;</div>
+          <h3>Anonymous signal sharing</h3>
+          <p>Optionally link with contacts via invite codes. If your concern level reaches the highest threshold, they get a private in-app nudge &mdash; no health details shared.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x2728;</div>
+          <h3>Built-in intelligence</h3>
+          <p>Ask questions in plain language and get answers grounded in public health sources. Context-aware suggestions appear when relevant to your situation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F4C4;</div>
+          <h3>GP summary export</h3>
+          <p>Generate a clinically formatted PDF with your symptom timeline, treatment history, and self-check results to bring to your appointment.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F30D;</div>
+          <h3>Region-aware resources</h3>
+          <p>Set your region for relevant medical helplines, emergency numbers, and health service links. Supports UK nations, USA, and worldwide.</p>
         </div>
       </div>
-    </div>
 
-    <div class="page" id="page-features">
-      <div class="container">
-        <div class="section-heading">
-          <h2>Features</h2>
-          <p>Everything you need to track, manage, and understand scabies symptoms &mdash; privately.</p>
-        </div>
-
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F4CB;</div><span class="card-title">Symptom check-ins</span></div><p>Log symptoms by body area with severity and itchiness levels. Select multiple affected areas per check-in. The app derives an overall symptom picture and tracks your concern level across three tiers: All Clear, Monitor Symptoms, and Limit Close Contact.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F4F8;</div><span class="card-title">Photo documentation</span></div><p>Take dated photos of affected areas to track visual changes over time. Attach severity ratings and notes. Photos are stored only in the app&rsquo;s private storage &mdash; never saved to your camera roll or uploaded anywhere.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F4CA;</div><span class="card-title">Self-check quiz</span></div><p>A guided self-assessment based on publicly available medical guidance helps you understand your current symptom pattern. High-specificity answers increase your concern level; the quiz can be retaken as symptoms change. Not a diagnosis.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F48A;</div><span class="card-title">Treatment management</span></div><p>Log treatments step by step through a clinically informed pathway: permethrin cream, malathion, ivermectin, and GP referral. Each step tracks application dates and outcomes. Get second-application reminders and a 7-day recovery check-in notification after treatment.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x2705;</div><span class="card-title">Recovery &amp; relapse detection</span></div><p>After treatment, a recovery self-check (cure quiz) assesses whether symptoms are resolving. If you pass, you&rsquo;re marked as recovered and old data is baselined so it doesn&rsquo;t affect future tracking. If new symptoms return, the app detects the relapse and re-enters monitoring.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F465;</div><span class="card-title">Contact network &amp; risk engine</span></div><p>Add close contacts with relationship types (partner, housemate, friend, classmate/colleague, other). The app builds a contact graph and runs a risk engine that estimates contact-level risk based on proximity, relationship, symptoms, and linked statuses. Risk estimates are organisational aids, not diagnoses.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F514;</div><span class="card-title">Anonymous signal sharing</span></div><p>With an optional Sign in with Apple account, generate invite codes to link with close contacts. If your concern level reaches the highest threshold, linked contacts receive a private in-app nudge. No health details are shared. You can link online contacts to local tracker entries to sync their status automatically. Unlink or delete your account at any time.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x2728;</div><span class="card-title">Built-in intelligence</span></div><p>Ask questions in natural language and get answers grounded in authoritative health sources (NHS, CDC, BAD, DermNet). Includes a searchable library of guided answers on common topics, plus context-aware suggestions that appear throughout the app when relevant to your situation &mdash; like treatment nudges, coordinator prompts, and recovery check reminders.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F4C4;</div><span class="card-title">GP summary export</span></div><p>Generate a clinically formatted PDF containing your symptom timeline, treatment history, self-check results, concern level, and attached photos. Designed for healthcare professionals &mdash; share it with your GP, pharmacist, dermatologist, or sexual health clinic.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F4E9;</div><span class="card-title">Coordinator messages</span></div><p>When your contacts may need to seek treatment too, the app can draft a message you can customise and share. The message includes relevant health service links for your region and is editable before sending.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F30D;</div><span class="card-title">Region-aware resources</span></div><p>Set your region to get relevant medical helplines, emergency numbers, pharmacy finders, and health guidance links. Supports England, Scotland, Wales, Northern Ireland, USA, and Worldwide. Emergency call links include a confirmation step to prevent accidental dialling.</p></div>
-        <div class="card"><div class="card-header"><div class="card-icon">&#x1F512;</div><span class="card-title">Privacy &amp; security</span></div><p>All health data is stored only on your device. Optional Face ID or passcode lock. Analytics is off by default and separate from the medical disclaimer. No ads, no tracking, no in-app purchases. If you enable Signal Sharing, only an anonymous concern-level string is stored online. Clear all data or delete your account at any time.</p></div>
-      </div>
-    </div>
-
-    <div class="page" id="page-faq">
-      <div class="container">
-        <div class="section-heading">
-          <h2>Frequently asked questions</h2>
-          <p>Common questions about Skratch Tracker.</p>
-        </div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Is Skratch Tracker a medical device?</div><div class="faq-answer"><p>No. Skratch Tracker is a self-tracking and signposting tool. It does not diagnose, treat, cure, or prevent any disease. Concern levels and risk estimates are organisational aids based on the information you enter &mdash; they are not clinical assessments. Always consult a healthcare professional for medical advice.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Where is my data stored?</div><div class="faq-answer"><p>All health data &mdash; symptom logs, photos, treatments, contacts, quiz results, and AI conversations &mdash; is stored only on your device. Nothing is uploaded to any server. If you create an optional account for Signal Sharing, only an anonymous concern-level string is stored online, never your health details, symptoms, or photos.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Do I need to create an account?</div><div class="faq-answer"><p>No. Every feature works without an account &mdash; symptom tracking, photo documentation, treatment logging, the self-check quiz, Skratch Intelligence, GP summary export, and contact management. An optional Sign in with Apple account is only needed for Signal Sharing, which lets linked contacts receive anonymous nudges when your concern level changes.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What is Skratch Intelligence?</div><div class="faq-answer"><p>Skratch Intelligence is an in-app assistant you can ask questions about scabies symptoms, treatments, medications, and next steps. It draws from authoritative public health sources and is context-aware, offering relevant suggestions based on your current situation. It also includes a searchable library of guided answers on common topics. It does not provide diagnoses and is not a substitute for professional medical advice.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What are concern levels?</div><div class="faq-answer"><p>Your concern level is derived from data you enter &mdash; symptom check-ins, photo logs, and the self-check quiz. There are three levels: &ldquo;All clear&rdquo; (no pattern of concern), &ldquo;Monitor symptoms&rdquo; (some indicators worth watching), and &ldquo;Limit close contact&rdquo; (a stronger pattern that suggests seeking professional advice). These are organisational labels, not clinical assessments.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How does the contact web work?</div><div class="faq-answer"><p>You can add close contacts and set their relationship type (partner, housemate, friend, classmate/colleague, or other) and their status. You can also link contacts to each other and optionally specify how they know one another. The app uses this information to organise a risk estimate across the network, helping you understand which contacts might benefit from awareness. Risk estimates are not diagnoses.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How does Signal Sharing work?</div><div class="faq-answer"><p>With an optional Sign in with Apple account, you can generate an invite code and share it with a close contact who also uses Skratch Tracker. Once linked, if your concern level changes, they receive a private in-app nudge &mdash; no health details are shared, just that they may want to seek advice. You can unlink or delete your account at any time, and all server-side data is permanently removed.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How does treatment tracking work?</div><div class="faq-answer"><p>You can log which treatment you&rsquo;re using and the date of each application. The app tracks your second-application window and can send reminders if you enable treatment notifications. After treatment, a recovery self-check helps you assess whether symptoms are resolving. Your full treatment history is preserved even if you reset for a new episode.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Can I export my data for a doctor?</div><div class="faq-answer"><p>Yes. The GP Summary feature generates a PDF containing your symptom timeline, treatment history, self-check results, and concern level. It includes only clinically relevant information and is formatted for healthcare professionals. You can share it with your GP, pharmacist, dermatologist, or sexual health clinic.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Is analytics data collected?</div><div class="faq-answer"><p>Only if you explicitly opt in. Analytics is off by default and the toggle is separate from the medical disclaimer. If enabled, only broad app-usage patterns are collected (which screens are visited, which features are used, error types). Symptom details, photos, contacts, AI conversations, quiz answers, and all health information are never collected under any circumstances.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Can I lock the app with Face ID?</div><div class="faq-answer"><p>Yes. You can enable Face ID (or device passcode) lock in Settings. When enabled, the app requires authentication each time it&rsquo;s opened, keeping your health data private even if someone has access to your phone.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What regions are supported?</div><div class="faq-answer"><p>You can set your region in Settings. Options include England, Scotland, Wales, Northern Ireland, USA, and Worldwide. Your region determines which medical helplines, health service links, and treatment guidance are shown throughout the app.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Are my photos uploaded anywhere?</div><div class="faq-answer"><p>No. Photos are stored only in the app&rsquo;s private storage on your device. They are not saved to your camera roll and not uploaded to any server. The only way a photo leaves the app is if you manually export the GP Summary PDF, which can include photos you&rsquo;ve attached.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Can I delete all my data?</div><div class="faq-answer"><p>Yes. &ldquo;Clear all data&rdquo; in Settings removes everything from your device: photos, symptom logs, quiz results, contacts, treatments, and preferences. If you have a Signal Sharing account, you&rsquo;re prompted to delete that too &mdash; which permanently removes all server-side data and revokes your Sign in with Apple credential.</p></div></div>
-
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Is Skratch Tracker free?</div><div class="faq-answer"><p>Yes. Skratch Tracker is free to download and use with no in-app purchases, subscriptions, or ads.</p></div></div>
-      </div>
-    </div>
-
-    <div class="page" id="page-contact">
-      <div class="container">
-        <div class="section-heading" style="text-align:center;">
-          <h2>Contact us</h2>
-          <p>Questions, feedback, or support requests.</p>
-        </div>
-
-        <div class="contact-card" style="text-align:center;">
-          <p style="margin-bottom:24px;font-size:15px;">For questions about Skratch Tracker, privacy concerns, data deletion requests, or general feedback, please email:</p>
-          <a href="mailto:hrjs781@icloud.com" style="font-size:18px;">hrjs781@icloud.com</a>
-          <p style="margin-top:24px;font-size:12px;color:var(--text-muted);">We aim to respond within 48 hours.</p>
-        </div>
+      <div class="download-section">
+        <h2>Ready to take control?</h2>
+        <p>Free to download. No sign-up required. Your data stays yours.</p>
+        <a href="#" class="app-store-badge">Download for iOS</a>
       </div>
     </div>
   </main>
@@ -561,9 +481,9 @@
   <footer>
     <div class="footer-links">
       <a href="/">Home</a>
-      <a href="/#features">Features</a>
-      <a href="/#faq">FAQ</a>
-      <a href="/#contact">Contact</a>
+      <a href="/features/">Features</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/contact/">Contact</a>
       <a href="/privacy-policy/">Privacy Policy</a>
       <a href="/terms-of-service/">Terms of Service</a>
     </div>
@@ -571,29 +491,9 @@
   </footer>
 
   <script>
-    function showPage(page) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      const target = document.getElementById('page-' + page);
-      if (target) target.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      document.getElementById('navLinks').classList.remove('open');
-    }
-
     function toggleNav() {
       document.getElementById('navLinks').classList.toggle('open');
     }
-
-    function toggleFaq(el) {
-      el.parentElement.classList.toggle('open');
-    }
-
-    function handleHash() {
-      const hash = window.location.hash.replace('#', '');
-      if (hash && document.getElementById('page-' + hash)) showPage(hash);
-    }
-
-    window.addEventListener('hashchange', handleHash);
-    handleHash();
 
     (function() {
       const canvas = document.getElementById('network-canvas');
