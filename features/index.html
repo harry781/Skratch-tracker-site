@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features — Skratch Tracker</title>
+  <meta name="description" content="Everything you need to track, manage, and understand scabies symptoms — privately on your device.">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #030307;
+      --card-bg: rgba(255,255,255,0.025);
+      --card-border: rgba(255,255,255,0.06);
+      --accent: rgba(115,89,191,1);
+      --accent-dim: rgba(115,89,191,0.35);
+      --accent-glow: rgba(115,89,191,0.15);
+      --text-primary: rgba(255,255,255,0.92);
+      --text-body: rgba(255,255,255,0.58);
+      --text-muted: rgba(255,255,255,0.38);
+      --text-faint: rgba(255,255,255,0.22);
+      --radius: 16px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #network-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .aurora-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 80%, rgba(115,89,191,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(90,70,160,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 60% at 50% 100%, rgba(60,40,120,0.03) 0%, transparent 40%);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(3,3,7,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .nav-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      padding-top: 80px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 0 60px;
+    }
+
+    .hero-logo {
+      width: 120px; height: 120px;
+      border-radius: 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 40px rgba(115,89,191,0.25), 0 0 80px rgba(115,89,191,0.1);
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--text-body);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-cta, .app-store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(115,89,191,0.4);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .hero-cta:hover, .app-store-badge:hover {
+      background: rgba(115,89,191,0.45);
+      transform: translateY(-1px);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .feature-card, .card {
+      background: var(--card-bg);
+      border: 0.5px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3, .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .feature-card p, .card p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    .feature-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--accent-glow);
+      border: 0.5px solid rgba(115,89,191,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .card-icon {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+      border: 0.5px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+    }
+
+    .section-heading { margin-bottom: 32px; }
+
+    .section-heading h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      font-size: 15px;
+      color: var(--text-body);
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 0.5px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 18px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-question::after { transform: rotate(45deg); }
+
+    .faq-answer {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      padding: 0 24px 18px;
+      max-height: 500px;
+    }
+
+    .faq-answer p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 0.5px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 36px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .contact-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .download-section {
+      text-align: center;
+      padding: 60px 0;
+      margin-top: 40px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .download-section h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .download-section p {
+      font-size: 14px;
+      color: var(--text-body);
+      margin-bottom: 28px;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--card-border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-body); }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(3,3,7,0.95);
+        backdrop-filter: blur(20px);
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--card-border);
+      }
+
+      .nav-toggle { display: block; }
+      .hero { padding: 50px 0 40px; }
+      .hero-logo { width: 90px; height: 90px; border-radius: 22px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .contact-card { padding: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="network-canvas"></canvas>
+  <div class="aurora-overlay"></div>
+
+  <nav>
+    <a href="/" class="nav-brand">
+      <img src="/logo-nav.png" alt="Skratch Tracker" class="nav-logo">
+      <span class="nav-title">Skratch Tracker</span>
+    </a>
+
+    <button class="nav-toggle" onclick="toggleNav()">&#9776;</button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/features/" style="color: var(--text-primary)">Features</a></li>
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/contact/">Contact</a></li>
+      <li><a href="/privacy-policy/">Privacy</a></li>
+      <li><a href="/terms-of-service/">Terms</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container" style="padding: 60px 24px 100px;">
+      <div class="section-heading">
+        <h2>Features</h2>
+        <p>Everything you need to track, manage, and understand scabies symptoms &mdash; privately.</p>
+      </div>
+
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F4CB;</div><span class="card-title">Symptom check-ins</span></div><p>Log symptoms by body area with severity and itchiness levels. Select multiple affected areas per check-in. The app derives an overall symptom picture and tracks your concern level across three tiers: All Clear, Monitor Symptoms, and Limit Close Contact.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F4F8;</div><span class="card-title">Photo documentation</span></div><p>Take dated photos of affected areas to track visual changes over time. Attach severity ratings and notes. Photos are stored only in the app&rsquo;s private storage &mdash; never saved to your camera roll or uploaded anywhere.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F4CA;</div><span class="card-title">Self-check quiz</span></div><p>A guided self-assessment based on publicly available medical guidance helps you understand your current symptom pattern. High-specificity answers increase your concern level; the quiz can be retaken as symptoms change. Not a diagnosis.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F48A;</div><span class="card-title">Treatment management</span></div><p>Log treatments step by step through a clinically informed pathway: permethrin cream, malathion, ivermectin, and GP referral. Each step tracks application dates and outcomes. Get second-application reminders and a 7-day recovery check-in notification after treatment.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x2705;</div><span class="card-title">Recovery &amp; relapse detection</span></div><p>After treatment, a recovery self-check (cure quiz) assesses whether symptoms are resolving. If you pass, you&rsquo;re marked as recovered and old data is baselined so it doesn&rsquo;t affect future tracking. If new symptoms return, the app detects the relapse and re-enters monitoring.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F465;</div><span class="card-title">Contact network &amp; risk engine</span></div><p>Add close contacts with relationship types (partner, housemate, friend, classmate/colleague, other). The app builds a contact graph and runs a risk engine that estimates contact-level risk based on proximity, relationship, symptoms, and linked statuses. Risk estimates are organisational aids, not diagnoses.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F514;</div><span class="card-title">Anonymous signal sharing</span></div><p>With an optional Sign in with Apple account, generate invite codes to link with close contacts. If your concern level reaches the highest threshold, linked contacts receive a private in-app nudge. No health details are shared. You can link online contacts to local tracker entries to sync their status automatically. Unlink or delete your account at any time.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x2728;</div><span class="card-title">Built-in intelligence</span></div><p>Ask questions in natural language and get answers grounded in authoritative health sources (NHS, CDC, BAD, DermNet). Includes a searchable library of guided answers on common topics, plus context-aware suggestions that appear throughout the app when relevant to your situation &mdash; like treatment nudges, coordinator prompts, and recovery check reminders.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F4C4;</div><span class="card-title">GP summary export</span></div><p>Generate a clinically formatted PDF containing your symptom timeline, treatment history, self-check results, concern level, and attached photos. Designed for healthcare professionals &mdash; share it with your GP, pharmacist, dermatologist, or sexual health clinic.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F4E9;</div><span class="card-title">Coordinator messages</span></div><p>When your contacts may need to seek treatment too, the app can draft a message you can customise and share. The message includes relevant health service links for your region and is editable before sending.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F30D;</div><span class="card-title">Region-aware resources</span></div><p>Set your region to get relevant medical helplines, emergency numbers, pharmacy finders, and health guidance links. Supports England, Scotland, Wales, Northern Ireland, USA, and Worldwide. Emergency call links include a confirmation step to prevent accidental dialling.</p></div>
+      <div class="card"><div class="card-header"><div class="card-icon">&#x1F512;</div><span class="card-title">Privacy &amp; security</span></div><p>All health data is stored only on your device. Optional Face ID or passcode lock. Analytics is off by default and separate from the medical disclaimer. No ads, no tracking, no in-app purchases. If you enable Signal Sharing, only an anonymous concern-level string is stored online. Clear all data or delete your account at any time.</p></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/features/">Features</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms-of-service/">Terms of Service</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Skratch Tracker. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    (function() {
+      const canvas = document.getElementById('network-canvas');
+      const ctx = canvas.getContext('2d');
+      let w, h, nodes = [];
+      const NODE_COUNT = 40;
+      const MAX_DIST = 150;
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+
+      function initNodes() {
+        nodes = [];
+        for (let i = 0; i < NODE_COUNT; i++) {
+          nodes.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            r: 1.2 + Math.random() * 1.8,
+            alpha: 0.2 + Math.random() * 0.4
+          });
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (const n of nodes) {
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+        }
+
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[j].x - nodes[i].x;
+            const dy = nodes[j].y - nodes[i].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < MAX_DIST) {
+              const a = (1 - d / MAX_DIST) * 0.25;
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.strokeStyle = `rgba(255,255,255,${a})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+
+        for (const n of nodes) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${n.alpha})`;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', () => { resize(); initNodes(); });
+      resize();
+      initNodes();
+      animate();
+    })();
+  </script>
+</body>
+</html>
