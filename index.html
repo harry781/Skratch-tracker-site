@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skratch Tracker — Private Scabies Symptom Tracking</title>
-  <meta name="description" content="Track symptoms, log treatments, and manage recovery privately on your device. No accounts required. No health data uploaded.">
+  <title>Skratch Tracker — Private Scabies Symptom Tracking Beta</title>
+  <meta name="description" content="Track symptoms, log treatments, and manage recovery privately on your device. Beta testing on TestFlight. No accounts required. No health data uploaded.">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +22,9 @@
       --accent: rgba(115,89,191,1);
       --accent-dim: rgba(115,89,191,0.35);
       --accent-glow: rgba(115,89,191,0.15);
+      --beta: rgba(196,104,35,1);
+      --beta-dim: rgba(196,104,35,0.18);
+      --beta-border: rgba(196,104,35,0.42);
       --text-primary: rgba(255,255,255,0.92);
       --text-body: rgba(255,255,255,0.58);
       --text-muted: rgba(255,255,255,0.38);
@@ -153,6 +156,33 @@
       color: var(--text-muted);
       text-transform: uppercase;
       margin-bottom: 16px;
+    }
+
+    .beta-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      background: var(--beta-dim);
+      border: 1px solid var(--beta-border);
+      border-radius: 999px;
+      color: var(--beta);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .hero .beta-label {
+      margin-bottom: 18px;
+    }
+
+    .feature-card .beta-label {
+      margin-left: 8px;
+      padding: 3px 8px;
+      font-size: 9px;
+      letter-spacing: 1px;
     }
 
     .hero h1 {
@@ -421,10 +451,11 @@
     <div class="container">
       <div class="hero">
         <img src="/logo-hero.png" alt="Skratch Tracker" class="hero-logo" fetchpriority="high">
-        <p class="hero-eyebrow">Private symptom tracking for iOS</p>
+        <p class="hero-eyebrow">Private symptom tracking beta for iOS</p>
+        <span class="beta-label">TestFlight Beta</span>
         <h1>Track scabies symptoms privately on your device</h1>
         <p>Log symptoms, photograph progress, manage treatments and share private signals with close contacts. Your health data never leaves your phone unless you choose to export it.</p>
-        <a href="#" class="hero-cta">Download on the App Store</a>
+        <a href="https://testflight.apple.com/join/HN1CBrHu" class="hero-cta">Download Beta on TestFlight</a>
       </div>
 
       <div class="features-grid">
@@ -455,7 +486,7 @@
         </div>
         <div class="feature-card">
           <div class="feature-icon">&#x2728;</div>
-          <h3>Built-in intelligence</h3>
+          <h3>Built-in intelligence <span class="beta-label">Beta</span></h3>
           <p>Ask questions in plain language and get answers grounded in public health sources. Context-aware suggestions appear when relevant to your situation.</p>
         </div>
         <div class="feature-card">
@@ -471,9 +502,9 @@
       </div>
 
       <div class="download-section">
-        <h2>Ready to take control?</h2>
-        <p>Free to download. No sign-up required. Your data stays yours.</p>
-        <a href="#" class="app-store-badge">Download for iOS</a>
+        <h2>Join the beta</h2>
+        <p>Skratch Tracker is currently available for beta testing on TestFlight. No sign-up required inside the app. Your data stays yours.</p>
+        <a href="https://testflight.apple.com/join/HN1CBrHu" class="app-store-badge">Download Beta for iOS</a>
       </div>
     </div>
   </main>
