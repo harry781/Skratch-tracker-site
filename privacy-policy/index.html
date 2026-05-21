@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Skratch Tracker — Privacy Policy</title>
-  <meta name="description" content="Privacy Policy for Skratch Tracker." />
+  <title>Skratch Skin Tracker — Privacy Policy</title>
+  <meta name="description" content="Privacy Policy for Skratch Skin Tracker." />
 
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="apple-touch-icon" href="/logo.png" />
@@ -103,31 +103,28 @@
     }
 
     .nav-links {
-      display: flex !important;
+      display: flex;
       gap: 28px;
       list-style: none;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      align-items: center;
-      max-width: 70vw;
-    }
-
-    .nav-links li {
-      display: list-item !important;
     }
 
     .nav-links a {
-      display: inline-block !important;
       color: var(--text-muted);
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
       transition: color 0.2s;
-      white-space: nowrap;
     }
 
-    .nav-links a:hover {
-      color: var(--text-primary);
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
     }
 
     main {
@@ -238,20 +235,21 @@
     }
 
     @media (max-width: 640px) {
-      nav {
-        align-items: flex-start;
-        padding: 14px 16px;
-        gap: 12px;
+      .nav-links { display: none; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(3,3,7,0.95);
+        backdrop-filter: blur(20px);
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--card-border);
       }
 
-      .nav-links {
-        gap: 8px 12px;
-        max-width: 210px;
-      }
-
-      .nav-links a {
-        font-size: 11px;
-      }
+      .nav-toggle { display: block; }
 
       main {
         padding: 140px 16px 70px;
@@ -274,11 +272,13 @@
 
   <nav>
     <a href="/" class="nav-brand">
-      <img src="/logo.png" alt="Skratch Tracker" class="nav-logo" />
-      <span class="nav-title">Skratch Tracker</span>
+      <img src="/logo.png" alt="Skratch Skin Tracker" class="nav-logo" />
+      <span class="nav-title">Skratch Skin Tracker</span>
     </a>
 
-    <ul class="nav-links">
+    <button class="nav-toggle" onclick="toggleNav()">&#9776;</button>
+
+    <ul class="nav-links" id="navLinks">
       <li><a href="/features/">Features</a></li>
       <li><a href="/faq/">FAQ</a></li>
       <li><a href="/contact/">Contact</a></li>
@@ -289,10 +289,10 @@
 
   <main>
     <div class="legal-content">
-      <h1>Skratch Tracker — Privacy Policy</h1>
+      <h1>Skratch Skin Tracker — Privacy Policy</h1>
       <p class="last-updated">Effective date: 16 May 2026</p>
 
-      <p>This Privacy Policy explains how Skratch Tracker (the "App") collects, uses, stores and shares personal data. The App is operated by Bellerophon Consulting (International) Limited ("we", "us", "our"). Contact: <a href="mailto:legal@skratchtracker.com">legal@skratchtracker.com</a>.</p>
+      <p>This Privacy Policy explains how Skratch Skin Tracker (the "App") collects, uses, stores and shares personal data. The App is operated by Bellerophon Consulting (International) Limited ("we", "us", "our"). Contact: <a href="mailto:legal@skratchtracker.com">legal@skratchtracker.com</a>.</p>
 
       <p>This policy is written for the current pre-release/TestFlight version of the App. If the App is later modified, such as the introduction of advertisments, this policy will be updated before that change goes live.</p>
 
@@ -407,10 +407,14 @@
       <a href="/privacy-policy/">Privacy Policy</a>
       <a href="/terms-of-service/">Terms of Service</a>
     </div>
-    <p class="footer-copy">Skratch Tracker &copy; 2026 Bellerophon Consulting (International) Limited.</p>
+    <p class="footer-copy">Skratch Skin Tracker &copy; 2026 Bellerophon Consulting (International) Limited.</p>
   </footer>
 
   <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
     (function() {
       const canvas = document.getElementById('network-canvas');
       const ctx = canvas.getContext('2d');
