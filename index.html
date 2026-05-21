@@ -422,6 +422,90 @@
       .hero-logo { width: 90px; height: 90px; border-radius: 22px; }
       .features-grid { grid-template-columns: 1fr; }
       .contact-card { padding: 24px; }
+      .carousel-arrow { display: none; }
+    }
+
+    /* Screenshot carousel */
+    .screens {
+      margin-top: 56px;
+    }
+
+    .carousel {
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      padding: 6px 4px 14px;
+      scrollbar-width: none;
+    }
+
+    .carousel-track::-webkit-scrollbar { display: none; }
+
+    .slide {
+      flex: 0 0 auto;
+      width: min(300px, 74vw);
+      scroll-snap-align: center;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 22px;
+      border: 0.5px solid var(--card-border);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--card-border);
+      background: rgba(3,3,7,0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: var(--text-primary);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .carousel-arrow:hover { background: rgba(115,89,191,0.45); }
+    .carousel-arrow.prev { left: -8px; }
+    .carousel-arrow.next { right: -8px; }
+    .carousel-arrow:disabled { opacity: 0.3; cursor: default; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .carousel-dots button {
+      width: 8px; height: 8px;
+      padding: 0;
+      border-radius: 50%;
+      border: none;
+      background: var(--text-faint);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .carousel-dots button.active {
+      background: var(--accent);
+      transform: scale(1.35);
     }
   </style>
 </head>
@@ -457,6 +541,27 @@
         <p>Log symptoms, photograph progress, manage treatments and share private signals with close contacts. Your health data never leaves your phone unless you choose to export it.</p>
         <a href="https://testflight.apple.com/join/HN1CBrHu" class="hero-cta">Download Beta via TestFlight</a>
       </div>
+
+      <section class="screens" aria-label="App screenshots">
+        <div class="section-heading" style="text-align:center;">
+          <h2>A look inside</h2>
+          <p>Swipe through the app.</p>
+        </div>
+
+        <div class="carousel">
+          <button class="carousel-arrow prev" id="screensPrev" aria-label="Previous screenshot">&#8249;</button>
+          <div class="carousel-track" id="screensTrack">
+            <div class="slide"><img src="/screenshots/screen-1.webp" alt="Log and track symptoms screen" loading="lazy" width="800" height="1734"></div>
+            <div class="slide"><img src="/screenshots/screen-2.webp" alt="Find out what your symptoms mean screen" loading="lazy" width="800" height="1734"></div>
+            <div class="slide"><img src="/screenshots/screen-3.webp" alt="Privately share and estimate contact risk screen" loading="lazy" width="800" height="1734"></div>
+            <div class="slide"><img src="/screenshots/screen-4.webp" alt="Manage treatment screen" loading="lazy" width="800" height="1734"></div>
+            <div class="slide"><img src="/screenshots/screen-5.webp" alt="Ask Skratch Intelligence screen" loading="lazy" width="800" height="1734"></div>
+          </div>
+          <button class="carousel-arrow next" id="screensNext" aria-label="Next screenshot">&#8250;</button>
+        </div>
+
+        <div class="carousel-dots" id="screensDots"></div>
+      </section>
 
       <div class="features-grid">
         <div class="feature-card">
@@ -525,6 +630,58 @@
     function toggleNav() {
       document.getElementById('navLinks').classList.toggle('open');
     }
+
+    (function() {
+      const track = document.getElementById('screensTrack');
+      if (!track) return;
+      const slides = Array.from(track.children);
+      const prev = document.getElementById('screensPrev');
+      const next = document.getElementById('screensNext');
+      const dotsWrap = document.getElementById('screensDots');
+
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', 'Go to screenshot ' + (i + 1));
+        b.addEventListener('click', () => scrollToSlide(i));
+        dotsWrap.appendChild(b);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function currentIndex() {
+        const center = track.scrollLeft + track.clientWidth / 2;
+        let best = 0, bestDist = Infinity;
+        slides.forEach((s, i) => {
+          const c = s.offsetLeft + s.offsetWidth / 2;
+          const d = Math.abs(c - center);
+          if (d < bestDist) { bestDist = d; best = i; }
+        });
+        return best;
+      }
+
+      function scrollToSlide(i) {
+        const s = slides[i];
+        if (!s) return;
+        track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: 'smooth' });
+      }
+
+      function update() {
+        const i = currentIndex();
+        dots.forEach((d, j) => d.classList.toggle('active', j === i));
+        if (prev) prev.disabled = i === 0;
+        if (next) next.disabled = i === slides.length - 1;
+      }
+
+      prev && prev.addEventListener('click', () => scrollToSlide(currentIndex() - 1));
+      next && next.addEventListener('click', () => scrollToSlide(currentIndex() + 1));
+
+      let raf;
+      track.addEventListener('scroll', () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(update);
+      });
+      window.addEventListener('resize', update);
+      update();
+    })();
 
     (function() {
       const canvas = document.getElementById('network-canvas');
